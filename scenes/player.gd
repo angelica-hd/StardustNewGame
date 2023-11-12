@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 var target = position
 var role
+@onready var ocupao = false
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():

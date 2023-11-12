@@ -10,7 +10,7 @@ size = Vector2(52, 99.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vn5"]
 size = Vector2(52, 99)
 
-[node name="cliente" type="RigidBody2D"]
+[node name="cliente" type="RigidBody2D" groups=["clientes"]]
 script = ExtResource("1_27m6i")
 
 [node name="Icon" type="Sprite2D" parent="."]

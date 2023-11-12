@@ -36,7 +36,9 @@ func _on_player_entered(body):
 	var client= body as Cliente
 	#if is_multiplayer_authority():
 	if player:#revisar, por esto es que funciona raro el mesón con mesero y chef
+		#if player.ocupao == false:
 			var new_parent = player.get_node(player.get_path())
+			#player.ocupao = true
 			#Debug.dprint("hola")
 			if selected:
 				pick_up.rpc(player.role)

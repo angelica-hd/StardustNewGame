@@ -3,6 +3,9 @@ extends StaticBody2D
 
 @onready var area_2d = $Area2D
 var selected = false
+@onready var slots = $Area2D/slots
+var meson_elements = [0, 0, 0, 0]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,10 +18,15 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 @rpc("call_local", "reliable", "any_peer")
 func drop_completo(path):
+	var slots_array = slots.get_children()
 	var tocomple = get_node(path)
-	tocomple.get_parent().remove_child(tocomple)
-	add_child(tocomple)
-	tocomple.position = Vector2.ZERO
+	var index = meson_elements.find(0,0)
+	if index != -1:
+		var s = slots_array[index]
+		meson_elements[index] = 1
+		tocomple.get_parent().remove_child(tocomple)
+		s.add_child(tocomple)
+		tocomple.position = Vector2.ZERO
 	
 func _on_player_entered(body):
 	var player = body as Player
@@ -29,6 +37,7 @@ func _on_player_entered(body):
 		if selected:
 			if tocomple != null:
 				drop_completo.rpc(tocomple.get_path())
+				#player.ocupao = false
 				selected = false
 			else:
 				selected = false

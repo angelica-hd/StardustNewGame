@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://c73h1at2t0bua"]
+[gd_scene load_steps=15 format=3 uid="uid://c73h1at2t0bua"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_i6r40"]
-[ext_resource type="PackedScene" uid="uid://o52u0d27mabd" path="res://scenes/cliente.tscn" id="1_vlu5k"]
 [ext_resource type="PackedScene" uid="uid://dyir1uqbqim4o" path="res://scenes/mesero.tscn" id="2_2t2rv"]
 [ext_resource type="PackedScene" uid="uid://chl340foqglf4" path="res://scenes/chefsito.tscn" id="3_jj02r"]
 [ext_resource type="PackedScene" uid="uid://dv8g6pyih6nhc" path="res://scenes/mesilla.tscn" id="3_qvdnj"]
@@ -28,6 +27,7 @@ size = Vector2(388.5, 95.25)
 script = ExtResource("1_i6r40")
 mesero_scene = ExtResource("2_2t2rv")
 chef_scene = ExtResource("3_jj02r")
+sec = 10
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -73,10 +73,6 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(368, 216)
 scale = Vector2(0.5, 0.5)
 
-[node name="cliente" parent="." instance=ExtResource("1_vlu5k")]
-position = Vector2(100, 115)
-metadata/_edit_group_ = true
-
 [node name="muros" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="muros"]
@@ -103,12 +99,14 @@ position = Vector2(871, 225)
 [node name="meserospawn" type="Marker2D" parent="Spawn"]
 position = Vector2(240, 226)
 
+[node name="clientespawn" type="Marker2D" parent="Spawn"]
+position = Vector2(97, 96)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 336)
 zoom = Vector2(0.9, 0.9)
 
 [node name="meson" parent="." instance=ExtResource("8_jjjaq")]
-position = Vector2(575, 243)
 
 [node name="mesaIng" parent="." instance=ExtResource("9_co5sh")]
 position = Vector2(1057, 242)
@@ -141,3 +139,7 @@ size_flags_vertical = 8
 theme = ExtResource("8_gsg43")
 text = "$ 0"
 vertical_alignment = 3
+
+[node name="TimerCliente" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerCliente" to="." method="_on_timer_cliente_timeout"]
