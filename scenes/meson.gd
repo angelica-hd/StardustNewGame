@@ -3,8 +3,8 @@ extends StaticBody2D
 
 @onready var area_2d = $Area2D
 var selected = false
-@onready var slots = $Area2D/slots
-var meson_elements = [0, 0, 0, 0]
+@onready var slots = $slots
+@export var meson_elements = [0, 0, 0, 0]
 
 
 # Called when the node enters the scene tree for the first time.

@@ -27,9 +27,15 @@ func send_come():
 func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
-			get_parent().remove_child(self)
+			var parent = get_parent()
+			parent.remove_child(self)
 			player.scene.add_child(self)
-			position = Vector2.ZERO
+			position = Vector2.ZERO 
+			if parent is Marker2D:
+				var meson = parent.get_parent().get_parent()
+				var slots = parent.get_parent().get_children()
+				var index = slots.find(parent, 0)
+				meson.meson_elements[index] = 0
 			
 func _on_player_entered(body):
 	var player = body as Player
