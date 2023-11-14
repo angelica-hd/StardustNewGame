@@ -24,7 +24,8 @@ func drop_completo(path):
 	if index != -1:
 		var s = slots_array[index]
 		meson_elements[index] = 1
-		tocomple.get_parent().set_has_tocomple(false)
+		if tocomple.get_parent() is Player:
+			tocomple.get_parent().set_has_tocomple(false)
 		tocomple.get_parent().remove_child(tocomple)
 		s.add_child(tocomple)
 		tocomple.position = Vector2.ZERO

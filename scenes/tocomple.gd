@@ -27,16 +27,18 @@ func send_come():
 func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
-			var parent = get_parent()
-			parent.remove_child(self) # se hace lo que teníamos
-			player.scene.add_child(self)
-			player.scene.set_has_tocomple(true)# el jugador ya tiene un tocomple
-			position = Vector2.ZERO 
-			if parent is Marker2D:
-				var meson = parent.get_parent().get_parent()
-				var slots = parent.get_parent().get_children()
-				var index = slots.find(parent, 0)
-				meson.meson_elements[index] = 0
+			Debug.dprint(player.scene.has_tocomple)
+			if player.scene.has_tocomple == false:
+				var parent = get_parent()
+				parent.remove_child(self) # se hace lo que teníamos
+				player.scene.add_child(self)
+				player.scene.set_has_tocomple(true)# el jugador ya tiene un tocomple
+				position = Vector2.ZERO 
+				if parent is Marker2D:
+					var meson = parent.get_parent().get_parent()
+					var slots = parent.get_parent().get_children()
+					var index = slots.find(parent, 0)
+					meson.meson_elements[index] = 0
 			
 func _on_player_entered(body):
 	var player = body as Player
@@ -48,9 +50,8 @@ func _on_player_entered(body):
 			#player.ocupao = true
 			#Debug.dprint("hola")
 			if selected:
-				Debug.dprint(player.has_tocomple)
-				if player.has_tocomple == false: # si hay 0 tocomples en el player
-					pick_up.rpc(player.role)
+				# si hay 0 tocomples en el player
+				pick_up.rpc(player.role)
 	if client:
 			var new_parent2 = client.get_node(client.get_path())
 			#Debug.dprint("hello")
@@ -59,10 +60,13 @@ func _on_player_entered(body):
 				Debug.dprint(client.atendido_mesa)
 				if client.atendido_mesa == false: # si hay 0 tocomples en el player
 					#Debug.dprint("new_parent22")
+					if get_parent() is Player:
+						get_parent().set_has_tocomple(false)
 					get_parent().remove_child(self)
 					new_parent2.add_child(self)
 					position = Vector2.ZERO
 					send_come.rpc()
+					
 					client.atendido_mesa = true
 				#ganancias += 50
 				#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
