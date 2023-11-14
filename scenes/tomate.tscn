@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://tol14qis8avo"]
+
+[ext_resource type="Script" path="res://scenes/tomate.gd" id="1_7bink"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_j62vi"]
+[ext_resource type="TileSet" uid="uid://cencsdp8ssu2l" path="res://scenes/food.tres" id="3_tewxm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyc3j"]
+size = Vector2(225, 127)
+
+[node name="tomate" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7bink")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+visible = false
+texture = ExtResource("2_j62vi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-51.5, 0)
+shape = SubResource("RectangleShape2D_eyc3j")
+
+[node name="TileMap" type="TileMap" parent="Area2D"]
+position = Vector2(55, 17)
+scale = Vector2(6, 6)
+tile_set = ExtResource("3_tewxm")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1, 655360, 13)
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
