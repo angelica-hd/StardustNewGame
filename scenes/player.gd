@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var speed = 400
 @onready var pause_menu = $CanvasLayer/Pause_Menu
+var has_tocomple : bool = false
 
 var target = position
 var role
@@ -33,6 +34,10 @@ func setup(player_data: Statics.PlayerData):
 			Game.players[i].scene = self
 			break
 	
+
+func set_has_tocomple(val):
+	has_tocomple = val
+
 @rpc
 func test():
 #	if is_multiplayer_authority():
