@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://t0106fi8ojti"]
+[gd_scene load_steps=5 format=3 uid="uid://t0106fi8ojti"]
 
+[ext_resource type="Script" path="res://scenes/palta.gd" id="1_2opim"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_4e5sk"]
 [ext_resource type="TileSet" uid="uid://cencsdp8ssu2l" path="res://scenes/food.tres" id="3_8y86v"]
 
@@ -8,6 +9,7 @@ size = Vector2(225, 127)
 
 [node name="palta" type="Node2D"]
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_2opim")
 
 [node name="Area2D" type="Area2D" parent="."]
 

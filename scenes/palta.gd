@@ -1,4 +1,4 @@
-class_name Tomate
+class_name Palta
 extends Node2D
 
 @onready var area_2dd = $Area2D
