@@ -4,6 +4,7 @@ extends Node2D
 @onready var area_2dd = $Area2D
 var selected = false
 var come = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area_2dd.body_entered.connect(_on_player_entered)
@@ -51,12 +52,13 @@ func _on_player_entered(body):
 			#Debug.dprint("hola")
 		if selected:
 			# si hay 0 tocomples en el player
-			pick_up.rpc(player.role)
+			if not (get_parent() is Cliente):
+				pick_up.rpc(player.role)
 	if client:
 		var new_parent2 = client.get_node(client.get_path())
 		#Debug.dprint("hello")
 		if selected:
-			# si el cliente fue atendido en la fila pero aun no en la msea
+			# si el cliente fue atendido en la fila pero aun no en la mesa
 			if client.atendido_fila == true and client.atendido_mesa == false: 
 				if get_parent() is Player:
 					get_parent().set_has_tocomple(false)
@@ -64,7 +66,7 @@ func _on_player_entered(body):
 				new_parent2.add_child(self)
 				position = Vector2.ZERO
 				send_come.rpc()
-				
-				client.atendido_mesa = true
+				#client.atendido_mesa = true
+				client.send_atendido_mesa.rpc()
 				#ganancias += 50
 				#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")

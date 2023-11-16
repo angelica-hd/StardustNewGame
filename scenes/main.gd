@@ -30,8 +30,6 @@ func timer_process(delta):
 			add_child(new_client)
 			new_client.global_position = pos
 			sec = 10
-		
-		
 
 func _on_timer_cliente_timeout():
 	pass
@@ -66,6 +64,16 @@ func _process(delta: float) -> void:
 				get_tree().change_scene_to_file("res://scenes/perder_menu.tscn")
 			else:
 				get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
-
-
+	
+	# arreglo con los clientes en el nivel
+	var clientes_fila = get_tree().get_nodes_in_group("clientes")
+	
+	# sumar los pagos de cada uno de los clientes
+	# (aun no funciona bien)
+	for cliente in clientes_fila:
+		var monto = cliente.get_pago_cliente()
+		if monto > 0:
+			ganancias += monto
+			cliente.reset_pago_cliente.rpc()
+	
 

@@ -12,6 +12,8 @@ var atendido_fila =  false
 var atendido_mesa = false
 var me_jui = false
 
+var pago = 0
+
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if is_multiplayer_authority():
 		if !Input.is_action_pressed("right_click"):
@@ -35,6 +37,10 @@ func send_gan():
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
 		atendido_fila = true
+		
+@rpc("call_local", "reliable")
+func send_atendido_mesa():
+	atendido_mesa = true
 
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
@@ -58,7 +64,22 @@ func _process(delta):
 	if selected:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
+	if atendido_mesa:
+		set_pago_cliente.rpc(50)
 
 # para modificar desde fuera el valor de dropped_in_mesilla
 func set_dropped_in_mesilla(val):
 	dropped_in_mesilla = val
+
+# obtiene el valor de la variable pago
+func get_pago_cliente():
+	return pago
+
+@rpc("call_local", "reliable")
+func set_pago_cliente(valor):
+	pago = valor
+
+# vuelve a 0 el valor del pago del cliente
+@rpc("call_local", "reliable")
+func reset_pago_cliente():
+	pago = 0
