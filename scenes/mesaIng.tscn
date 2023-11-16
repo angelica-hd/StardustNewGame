@@ -32,14 +32,14 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(2, 77)
 
 [node name="paltasspawn" type="Marker2D" parent="."]
-position = Vector2(2, 204)
+position = Vector2(2, 243)
 
 [node name="tocomple" parent="." instance=ExtResource("2_gd1ly")]
 visibility_layer = 2
 position = Vector2(-3, -48)
 
 [node name="tomate" parent="." instance=ExtResource("3_x6ify")]
-position = Vector2(1, 77)
+position = Vector2(1, 100)
 
 [node name="palta" parent="." instance=ExtResource("4_4m66w")]
-position = Vector2(0, 205)
+position = Vector2(0, 240)

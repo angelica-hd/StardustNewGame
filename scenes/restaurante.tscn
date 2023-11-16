@@ -63,15 +63,15 @@ layer_0/tile_data = PackedInt32Array(65536, 131072, 12)
 [node name="Players" type="Node2D" parent="."]
 
 [node name="mesilla2" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(371, 499)
+position = Vector2(359, 498)
 scale = Vector2(0.5, 0.5)
 
 [node name="mesilla3" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(169, 376)
+position = Vector2(183, 345)
 scale = Vector2(0.5, 0.5)
 
 [node name="mesilla" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(368, 216)
+position = Vector2(399, 238)
 scale = Vector2(0.5, 0.5)
 
 [node name="muros" type="StaticBody2D" parent="."]
