@@ -29,6 +29,7 @@ func _on_body_entered(body):
 	var cliente = body as Cliente
 	if cliente:
 		cliente.dropped.connect(is_dropped.bind(cliente))
+		cliente.set_dropped_in_mesilla(true)
 		
 		
 #crear señal al cliente para verificar si se fue y desocupar silla

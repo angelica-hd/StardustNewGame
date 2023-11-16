@@ -49,24 +49,22 @@ func _on_player_entered(body):
 			#var new_parent = player.get_node(player.get_path())
 			#player.ocupao = true
 			#Debug.dprint("hola")
-			if selected:
-				# si hay 0 tocomples en el player
-				pick_up.rpc(player.role)
+		if selected:
+			# si hay 0 tocomples en el player
+			pick_up.rpc(player.role)
 	if client:
-			var new_parent2 = client.get_node(client.get_path())
-			#Debug.dprint("hello")
-			if selected:
-				# arreglo de tocomples
-				Debug.dprint(client.atendido_mesa)
-				if client.atendido_mesa == false: # si hay 0 tocomples en el player
-					#Debug.dprint("new_parent22")
-					if get_parent() is Player:
-						get_parent().set_has_tocomple(false)
-					get_parent().remove_child(self)
-					new_parent2.add_child(self)
-					position = Vector2.ZERO
-					send_come.rpc()
-					
-					client.atendido_mesa = true
+		var new_parent2 = client.get_node(client.get_path())
+		#Debug.dprint("hello")
+		if selected:
+			# si el cliente fue atendido en la fila pero aun no en la msea
+			if client.atendido_fila == true and client.atendido_mesa == false: 
+				if get_parent() is Player:
+					get_parent().set_has_tocomple(false)
+				get_parent().remove_child(self)
+				new_parent2.add_child(self)
+				position = Vector2.ZERO
+				send_come.rpc()
+				
+				client.atendido_mesa = true
 				#ganancias += 50
 				#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")

@@ -6,6 +6,7 @@ extends Node2D
 @onready var area_2d = $Area2D
 signal dropped
 
+var dropped_in_mesilla = false
 var selected = false
 var atendido_fila =  false
 var atendido_mesa = false
@@ -19,7 +20,8 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				send_position.rpc(position)
 				dropped.emit()
 				send_gan.rpc()
-				send_pensamiento.rpc()
+				if atendido_fila:
+					send_pensamiento.rpc()
 		else:
 			selected = true
 
@@ -30,7 +32,9 @@ func send_position(pos):
 
 @rpc("call_local", "reliable")
 func send_gan():
-	atendido_fila = true
+	# solo si se encuentra en una mesilla, sino no
+	if dropped_in_mesilla:
+		atendido_fila = true
 
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
@@ -48,11 +52,13 @@ func _ready():
 	for p in Game.players:
 		if p.role == 2:
 			set_multiplayer_authority(p.id)
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if selected:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
+
+# para modificar desde fuera el valor de dropped_in_mesilla
+func set_dropped_in_mesilla(val):
+	dropped_in_mesilla = val
