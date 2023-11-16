@@ -4,11 +4,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e11ei"]
 
-[node name="comanda" type="Node2D"]
+[node name="comanda" type="Node2D" groups=["comanda"]]
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+modulate = Color(1, 0, 0, 0.721569)
 position = Vector2(-0.250003, -0.749998)
 scale = Vector2(0.316406, 0.464844)
 texture = ExtResource("1_5i3e1")
