@@ -21,6 +21,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				selected = false
 				send_position.rpc(position)
 				dropped.emit()
+#				if atendido_mesa 
 				send_gan.rpc()
 				if atendido_fila:
 					send_pensamiento.rpc()
@@ -32,8 +33,10 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 func send_position(pos):
 	position = pos
 
-@rpc("call_local", "reliable")
-func send_gan():
+@rpc("call_local", "reliable", "any_peer")
+func send_gan(drop = false):
+	if drop:
+		dropped_in_mesilla = true
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
 		atendido_fila = true

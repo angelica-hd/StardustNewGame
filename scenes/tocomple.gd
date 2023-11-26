@@ -29,18 +29,36 @@ func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
 			Debug.dprint(player.scene.has_tocomple)
-			if player.scene.has_tocomple == false:
+			if not player.scene.has_tocomple:
 				var parent = get_parent()
 				parent.remove_child(self) # se hace lo que teníamos
 				player.scene.add_child(self)
-				player.scene.set_has_tocomple(true)# el jugador ya tiene un tocomple
+				player.scene.has_tocomple = self
+				#player.scene.set_has_tocomple(true)# el jugador ya tiene un tocomple
 				position = Vector2.ZERO 
 				if parent is Marker2D:
 					var meson = parent.get_parent().get_parent()
 					var slots = parent.get_parent().get_children()
 					var index = slots.find(parent, 0)
 					meson.meson_elements[index] = 0
-			
+					
+@rpc("call_local","reliable","any_peer")
+func client_pick_up(client):
+	
+	client = get_tree().root.get_node(client)
+	if client.atendido_fila == true and client.atendido_mesa == false: 
+		Debug.dprint("HOLA")
+		if get_parent() is Player:
+			get_parent().has_tocomple = null
+		get_parent().remove_child(self)
+		client.add_child(self)
+		position = Vector2.ZERO
+		#send_come.rpc()
+		#client.atendido_mesa = true
+		client.send_atendido_mesa.rpc()
+		#ganancias += 50
+		#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
+
 func _on_player_entered(body):
 	var player = body as Player
 	var client = body as Cliente
@@ -52,21 +70,14 @@ func _on_player_entered(body):
 			#Debug.dprint("hola")
 		if selected:
 			# si hay 0 tocomples en el player
-			if not (get_parent() is Cliente):
+			if not (get_parent() is Cliente) or get_parent().atendido_mesa == false:
+				
 				pick_up.rpc(player.role)
 	if client:
-		var new_parent2 = client.get_node(client.get_path())
+		#var new_parent2 = client.get_node(client.get_path())
 		#Debug.dprint("hello")
 		if selected:
+			client_pick_up.rpc(client.get_path())
 			# si el cliente fue atendido en la fila pero aun no en la mesa
-			if client.atendido_fila == true and client.atendido_mesa == false: 
-				if get_parent() is Player:
-					get_parent().set_has_tocomple(false)
-				get_parent().remove_child(self)
-				new_parent2.add_child(self)
-				position = Vector2.ZERO
-				send_come.rpc()
-				#client.atendido_mesa = true
-				client.send_atendido_mesa.rpc()
-				#ganancias += 50
-				#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
+			#Debug.dprint(client.atendido_mesa)
+

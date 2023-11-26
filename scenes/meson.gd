@@ -25,7 +25,7 @@ func drop_completo(path):
 		var s = slots_array[index]
 		meson_elements[index] = 1
 		if tocomple.get_parent() is Player:
-			tocomple.get_parent().set_has_tocomple(false)
+			tocomple.get_parent().has_tocomple = null
 		tocomple.get_parent().remove_child(tocomple)
 		s.add_child(tocomple)
 		tocomple.position = Vector2.ZERO
@@ -34,7 +34,7 @@ func _on_player_entered(body):
 	var player = body as Player
 	#if is_multiplayer_authority():
 	if player:
-		var tocomple = player.get_tree().get_nodes_in_group("tocomples")[0]
+		var tocomple = player.has_tocomple
 		#Debug.dprint(self)
 		if selected:
 			if tocomple != null:

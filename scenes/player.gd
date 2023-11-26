@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var speed = 400
 @onready var pause_menu = $CanvasLayer/Pause_Menu
-var has_tocomple : bool = false
+var has_tocomple = null
 
 var target = position
 var role

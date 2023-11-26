@@ -24,7 +24,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
-			var tocomple = player.scene.get_tree().get_nodes_in_group("tocomples")[0]
+			var tocomple = player.scene.has_tocomple
 			if tocomple != null and tocomple.get_parent() is Player:
 				var parent = get_parent()
 				parent.remove_child(self)
@@ -37,3 +37,4 @@ func _on_player_entered(body):
 	if player:#revisar, por esto es que funciona raro el mesón con mesero y chef
 		if selected and player.role == 1:
 			pick_up.rpc(player.role)
+			selected = false
