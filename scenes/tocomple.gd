@@ -28,7 +28,7 @@ func send_come():
 func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
-			Debug.dprint(player.scene.has_tocomple)
+			#Debug.dprint(player.scene.has_tocomple)
 			if not player.scene.has_tocomple:
 				var parent = get_parent()
 				parent.remove_child(self) # se hace lo que teníamos
@@ -47,7 +47,6 @@ func client_pick_up(client):
 	
 	client = get_tree().root.get_node(client)
 	if client.atendido_fila == true and client.atendido_mesa == false: 
-		Debug.dprint("HOLA")
 		if get_parent() is Player:
 			get_parent().has_tocomple = null
 		get_parent().remove_child(self)

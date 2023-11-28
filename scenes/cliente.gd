@@ -41,9 +41,10 @@ func send_gan(drop = false):
 	if dropped_in_mesilla:
 		atendido_fila = true
 		
-@rpc("call_local", "reliable")
+@rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
+	set_pago_cliente.rpc(50)
 
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
@@ -67,8 +68,8 @@ func _process(delta):
 	if selected:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
-	if atendido_mesa:
-		set_pago_cliente.rpc(50)
+#	if atendido_mesa:
+#		set_pago_cliente.rpc(50)
 
 # para modificar desde fuera el valor de dropped_in_mesilla
 func set_dropped_in_mesilla(val):
@@ -78,11 +79,11 @@ func set_dropped_in_mesilla(val):
 func get_pago_cliente():
 	return pago
 
-@rpc("call_local", "reliable")
+@rpc("call_local", "reliable", "any_peer")
 func set_pago_cliente(valor):
 	pago = valor
 
 # vuelve a 0 el valor del pago del cliente
-@rpc("call_local", "reliable")
+@rpc("call_local", "reliable", "any_peer")
 func reset_pago_cliente():
 	pago = 0

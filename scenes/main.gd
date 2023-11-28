@@ -71,9 +71,8 @@ func _process(delta: float) -> void:
 	# sumar los pagos de cada uno de los clientes
 	# (aun no funciona bien)
 	for cliente in clientes_fila:
-		var monto = cliente.get_pago_cliente()
-		if monto > 0:
-			ganancias += monto
-			cliente.reset_pago_cliente.rpc()
-	
-
+		if cliente.atendido_mesa:
+			var monto = cliente.get_pago_cliente()
+			if monto > 0:
+				ganancias += monto
+				cliente.reset_pago_cliente.rpc()
