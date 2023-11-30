@@ -35,6 +35,7 @@ func _on_timer_cliente_timeout():
 	pass
 	
 func _ready() -> void:
+	Game.main = self
 	Game.players.sort_custom(func (a, b): return a.id < b.id)
 	for i in Game.players.size():
 		var player_data = Game.players[i]
@@ -49,8 +50,11 @@ func _ready() -> void:
 			players.add_child(player)
 			player.setup(player_data)
 			player.global_position = spawn.get_child(1).global_position
-	
 
+@rpc("call_local", "reliable", "any_peer")
+func send_pago(valor):
+	ganancias+=valor
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	meta.text = "$"+str(ganancias)+" / $"+str(meta_dia)
@@ -70,9 +74,9 @@ func _process(delta: float) -> void:
 	
 	# sumar los pagos de cada uno de los clientes
 	# (aun no funciona bien)
-	for cliente in clientes_fila:
-		if cliente.atendido_mesa:
-			var monto = cliente.get_pago_cliente()
-			if monto > 0:
-				ganancias += monto
-				cliente.reset_pago_cliente.rpc()
+#	for cliente in clientes_fila:
+#		if cliente.atendido_mesa:
+#			var monto = cliente.get_pago_cliente()
+#			if monto > 0:
+#				ganancias += monto
+#				cliente.reset_pago_cliente.rpc()

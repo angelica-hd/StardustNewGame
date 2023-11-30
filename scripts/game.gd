@@ -21,6 +21,7 @@ signal upnp_completed(error)
 const SERVER_PORT = 5409
 var thread = null
 
+var main
 
 func add_player(player: Statics.PlayerData) -> void:
 	players.append(player)

@@ -33,7 +33,6 @@ func setup(player_data: Statics.PlayerData):
 		if Game.players[i].role == player_data.role:
 			Game.players[i].scene = self
 			break
-	
 
 func set_has_tocomple(val):
 	has_tocomple = val

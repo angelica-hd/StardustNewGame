@@ -54,6 +54,8 @@ func client_pick_up(client):
 		position = Vector2.ZERO
 		#send_come.rpc()
 		#client.atendido_mesa = true
+		if is_multiplayer_authority():
+			Game.main.send_pago.rpc(50)
 		client.send_atendido_mesa.rpc()
 		#ganancias += 50
 		#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")

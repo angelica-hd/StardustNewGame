@@ -44,7 +44,6 @@ func send_gan(drop = false):
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
-	set_pago_cliente.rpc(50)
 
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
