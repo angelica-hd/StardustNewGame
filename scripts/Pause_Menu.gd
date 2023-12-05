@@ -24,7 +24,15 @@ func _on_retry_pressed():
 	pass
 	
 func _on_main_menu_pressed():
+	Game.pause.rpc(false)
+	_disconnect()
 	get_tree().change_scene_to_file("res://scenes/Main_menu.tscn")
 
 func _on_game_paused():
 	visible = get_tree().paused
+	
+func _disconnect():
+	multiplayer.multiplayer_peer.close()
+	multiplayer.multiplayer_peer = null
+	Game.players = []
+	

@@ -97,3 +97,8 @@ func _exit_tree():
 func pause(value: bool) -> void:
 	get_tree().paused = value
 	paused.emit()
+	
+func _disconnect():
+	multiplayer.multiplayer_peer.close()
+	Game.players = []
+	

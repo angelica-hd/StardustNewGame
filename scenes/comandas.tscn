@@ -1,5 +1,30 @@
-[gd_scene format=3 uid="uid://8tn07n522e66"]
+[gd_scene load_steps=3 format=3 uid="uid://8tn07n522e66"]
+
+[ext_resource type="Script" path="res://scenes/comandas.gd" id="1_fgxwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwrwo"]
+size = Vector2(566, 111)
 
 [node name="comandas" type="Node2D"]
+script = ExtResource("1_fgxwr")
 
 [node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qwrwo")
+
+[node name="slots" type="Node" parent="."]
+
+[node name="s1" type="Marker2D" parent="slots"]
+position = Vector2(210, 0)
+
+[node name="s2" type="Marker2D" parent="slots"]
+position = Vector2(110, 0)
+
+[node name="s3" type="Marker2D" parent="slots"]
+position = Vector2(-110, 0)
+
+[node name="s4" type="Marker2D" parent="slots"]
+position = Vector2(-210, 0)
+
+[node name="s5" type="Marker2D" parent="slots"]
