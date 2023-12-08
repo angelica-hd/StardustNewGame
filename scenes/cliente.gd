@@ -59,6 +59,7 @@ func _on_player_entered(body):
 func send_comanda(comanda):
 	Debug.dprint(comanda)
 	var comandas = get_tree().root.get_node("restaurante/comandas")
+	var index = comandas.lista_comandas.find(0,0)
 	pedido = comanda
 	if not is_multiplayer_authority():
 		var pedido_node = null
@@ -67,9 +68,10 @@ func send_comanda(comanda):
 		elif pedido == "tomate":
 			pedido_node = preload("res://scenes/comanda_tomate.tscn").instantiate()
 		elif pedido == "palta":
-			pedido_node = preload("res://scenes/comanda_palta.tscn")
-		
-		comandas.slots_array[0].add_child(pedido_node)
+			pedido_node = preload("res://scenes/comanda_palta.tscn").instantiate()
+		if index != -1:
+			comandas.lista_comandas[index] = 1
+			comandas.slots_array[index].add_child(pedido_node)
 	
 @rpc("call_local", "authority", "reliable")
 func send_position(pos):
