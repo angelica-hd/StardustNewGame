@@ -18,7 +18,7 @@ func variate_texture():
 		if Texture_variations.size() > 1:
 			var texture_id: int = randi() % Texture_variations.size()
 			var chosen_texture: Texture = Texture_variations[texture_id]
-			#texture = chosen_texture
+			texture = chosen_texture
 			send_texture_id.rpc(texture_id)
 
 @rpc("call_local","reliable","authority")

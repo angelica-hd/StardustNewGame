@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c73h1at2t0bua"]
+[gd_scene load_steps=16 format=3 uid="uid://c73h1at2t0bua"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_i6r40"]
 [ext_resource type="PackedScene" uid="uid://dyir1uqbqim4o" path="res://scenes/mesero.tscn" id="2_2t2rv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="8_gsg43"]
 [ext_resource type="PackedScene" uid="uid://g2kc10467j26" path="res://scenes/meson.tscn" id="8_jjjaq"]
 [ext_resource type="PackedScene" uid="uid://cjccvc7gpf4dh" path="res://scenes/mesaIng.tscn" id="9_co5sh"]
+[ext_resource type="PackedScene" uid="uid://8tn07n522e66" path="res://scenes/comandas.tscn" id="11_3htdq"]
 [ext_resource type="AudioStream" uid="uid://b16uxhjk58oxi" path="res://assets/music/lvl1-8-Bit-Arcade.mp3" id="11_3uvn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr5cm"]
@@ -51,7 +52,17 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(65552, 458753, 15, 65553, 458753, 15)
 
-[node name="Players" type="Node2D" parent="."]
+[node name="mesilla2" parent="." instance=ExtResource("3_qvdnj")]
+position = Vector2(359, 389)
+scale = Vector2(0.5, 0.5)
+
+[node name="mesilla3" parent="." instance=ExtResource("3_qvdnj")]
+position = Vector2(185, 258)
+scale = Vector2(0.5, 0.5)
+
+[node name="mesilla" parent="." instance=ExtResource("3_qvdnj")]
+position = Vector2(194, 531)
+scale = Vector2(0.5, 0.5)
 
 [node name="Spawn" type="Node2D" parent="."]
 
@@ -64,17 +75,7 @@ position = Vector2(407, 226)
 [node name="clientespawn" type="Marker2D" parent="Spawn"]
 position = Vector2(97, 96)
 
-[node name="mesilla2" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(359, 389)
-scale = Vector2(0.5, 0.5)
-
-[node name="mesilla3" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(185, 258)
-scale = Vector2(0.5, 0.5)
-
-[node name="mesilla" parent="." instance=ExtResource("3_qvdnj")]
-position = Vector2(194, 531)
-scale = Vector2(0.5, 0.5)
+[node name="Players" type="Node2D" parent="."]
 
 [node name="muros" type="StaticBody2D" parent="."]
 
@@ -139,5 +140,7 @@ stream = ExtResource("11_3uvn3")
 volume_db = 10.69
 autoplay = true
 bus = &"Niveles"
+
+[node name="comandas" parent="." instance=ExtResource("11_3htdq")]
 
 [connection signal="timeout" from="TimerCliente" to="." method="_on_timer_cliente_timeout"]

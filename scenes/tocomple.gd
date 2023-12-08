@@ -5,6 +5,10 @@ extends Node2D
 var selected = false
 var come = false
 
+#Ingredientes:
+var has_tomate = null
+var has_palta = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area_2dd.body_entered.connect(_on_player_entered)
@@ -44,7 +48,6 @@ func pick_up(role):
 					
 @rpc("call_local","reliable","any_peer")
 func client_pick_up(client):
-	
 	client = get_tree().root.get_node(client)
 	if client.atendido_fila == true and client.atendido_mesa == false: 
 		if get_parent() is Player:
@@ -72,7 +75,6 @@ func _on_player_entered(body):
 		if selected:
 			# si hay 0 tocomples en el player
 			if not (get_parent() is Cliente) or get_parent().atendido_mesa == false:
-				
 				pick_up.rpc(player.role)
 	if client:
 		#var new_parent2 = client.get_node(client.get_path())

@@ -1,18 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0632xn8d6ju0"]
+[gd_scene load_steps=3 format=3 uid="uid://bc438vw6o5uyp"]
 
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_5i3e1"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_7ks4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e11ei"]
 
-[node name="comanda" type="Node2D" groups=["comanda"]]
+[node name="comanda_tomate" type="Node2D" groups=["comanda"]]
+scale = Vector2(2, 2)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-modulate = Color(1, 0, 0, 0.721569)
+modulate = Color(0.631373, 0.52549, 0.0823529, 0.784314)
 position = Vector2(-0.250003, -0.749998)
 scale = Vector2(0.316406, 0.464844)
-texture = ExtResource("1_5i3e1")
+texture = ExtResource("1_7ks4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(2, 3)

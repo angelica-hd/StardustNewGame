@@ -19,17 +19,19 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		for body in bodies:
 			_on_player_entered(body)
 		
-
+				
 @rpc("call_local","reliable","any_peer")
 func pick_up(role):
 	for player in Game.players:
 		if player.role == role:
 			var tocomple = player.scene.has_tocomple
 			if tocomple != null and tocomple.get_parent() is Player:
-				var parent = get_parent()
-				parent.remove_child(self)
-				tocomple.add_child(self)
-				position = Vector2.ZERO 
+				if not tocomple.has_palta:
+					var parent = get_parent()
+					parent.remove_child(self)
+					tocomple.add_child(self)
+					tocomple.has_palta = self
+					position = Vector2.ZERO 
 			
 func _on_player_entered(body):
 	var player = body as Player

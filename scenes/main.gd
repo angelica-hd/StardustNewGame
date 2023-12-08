@@ -13,8 +13,6 @@ var ganancias = 0
 @export var sec = 0
 @onready var timer_cliente = $TimerCliente
 
-# @onready var tocomple = $mesaIng/tocomple
-#@onready var cliente = $cliente
 var packed_cliente = preload("res://scenes/cliente.tscn")
 
 @onready var tocomple = mesa_ing.get_tocomple()[0]
