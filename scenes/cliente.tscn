@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nsnn038duw7p" path="res://scenes/esperando.tscn" id="3_xbi2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbf4v"]
-size = Vector2(102, 91.5)
+size = Vector2(86, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vn5"]
 size = Vector2(52, 91)

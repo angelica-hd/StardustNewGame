@@ -9,6 +9,8 @@ var come = false
 var has_tomate = null
 var has_palta = null
 
+var tipo_completo = "hotdog"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area_2dd.body_entered.connect(_on_player_entered)
@@ -50,18 +52,19 @@ func pick_up(role):
 func client_pick_up(client):
 	client = get_tree().root.get_node(client)
 	if client.atendido_fila == true and client.atendido_mesa == false: 
-		if get_parent() is Player:
-			get_parent().has_tocomple = null
-		get_parent().remove_child(self)
-		client.add_child(self)
-		position = Vector2.ZERO
-		#send_come.rpc()
-		#client.atendido_mesa = true
-		if is_multiplayer_authority():
-			Game.main.send_pago.rpc(50)
-		client.send_atendido_mesa.rpc()
-		#ganancias += 50
-		#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
+		if client.pedido == tipo_completo:
+			if get_parent() is Player:
+				get_parent().has_tocomple = null
+			get_parent().remove_child(self)
+			client.add_child(self)
+			position = Vector2.ZERO
+			#send_come.rpc()
+			#client.atendido_mesa = true
+			if is_multiplayer_authority():
+				Game.main.send_pago.rpc(50)
+			client.send_atendido_mesa.rpc()
+			#ganancias += 50
+			#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
 
 func _on_player_entered(body):
 	var player = body as Player

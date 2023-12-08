@@ -89,7 +89,7 @@ func send_gan(drop = false):
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
-	#exclamacion.visible = false
+	esperando.visible = false
 
 @rpc("call_local", "reliable", "any_peer")
 func send_pedido_tomado():

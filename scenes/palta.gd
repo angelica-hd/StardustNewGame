@@ -31,6 +31,10 @@ func pick_up(role):
 					parent.remove_child(self)
 					tocomple.add_child(self)
 					tocomple.has_palta = self
+					if not tocomple.has_tomate:
+						tocomple.tipo_completo = "palta"
+					else:
+						tocomple.tipo_completo = "italiano"
 					position = Vector2.ZERO 
 			
 func _on_player_entered(body):
