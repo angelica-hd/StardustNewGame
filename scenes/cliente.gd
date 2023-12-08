@@ -4,6 +4,8 @@ extends Node2D
 @onready var pensamiento = $pensamiento
 @onready var markp = $markp
 @onready var area_2d = $Area2D
+@onready var animation_player = $AnimationPlayer
+
 signal dropped
 
 var dropped_in_mesilla = false
@@ -51,6 +53,7 @@ func send_pensamiento():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	animation_player.play("alien")
 	pensamiento.hide()
 	var id = multiplayer.get_unique_id()
 	var player = Game.get_player(id)
