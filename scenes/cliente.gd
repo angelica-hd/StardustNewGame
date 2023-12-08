@@ -30,7 +30,6 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		else:
 			selected = true
 
-
 @rpc("call_local", "authority", "reliable")
 func send_position(pos):
 	position = pos
@@ -42,6 +41,7 @@ func send_gan(drop = false):
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
 		atendido_fila = true
+		animation_player.stop()
 		
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():

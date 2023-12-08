@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv8g6pyih6nhc"]
 
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_2i5g6"]
 [ext_resource type="Script" path="res://scenes/mesilla.gd" id="1_7jkis"]
+[ext_resource type="Texture2D" uid="uid://cccmfaqfr8w4a" path="res://assets/tileset.png" id="2_osaqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwywt"]
-size = Vector2(121, 121.5)
+size = Vector2(209.5, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3g6h"]
-size = Vector2(76, 74)
+size = Vector2(76, 122)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smutr"]
-radius = 91.0
-height = 386.0
+radius = 106.0
+height = 448.0
 
 [node name="mesilla" type="Node2D"]
 script = ExtResource("1_7jkis")
@@ -20,39 +20,50 @@ script = ExtResource("1_7jkis")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="mesa"]
-position = Vector2(-1.5, -1.00003)
-scale = Vector2(0.992188, 0.984375)
-texture = ExtResource("1_2i5g6")
+modulate = Color(1, 0.827451, 0.905882, 1)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_osaqi")
+region_enabled = true
+region_rect = Rect2(-0.121, 280.906, 49.202, 39.187)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mesa"]
-position = Vector2(-1.5, -1.00003)
+position = Vector2(-1.75, -18.5)
 shape = SubResource("RectangleShape2D_qwywt")
 
 [node name="silla" type="Area2D" parent="."]
-position = Vector2(-138, 0)
+position = Vector2(-159, -60)
 metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="silla"]
-scale = Vector2(0.601563, 0.585938)
-texture = ExtResource("1_2i5g6")
+modulate = Color(1, 0.827451, 0.905882, 1)
+position = Vector2(0, 48.612)
+scale = Vector2(-7, 5.75937)
+texture = ExtResource("2_osaqi")
+region_enabled = true
+region_rect = Rect2(48.7544, 409.684, 12.4678, 22.655)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silla"]
+[node name="CollisionShape1" type="CollisionShape2D" parent="silla"]
+position = Vector2(0, 51)
 shape = SubResource("RectangleShape2D_n3g6h")
 
 [node name="silla2" type="Area2D" parent="."]
-position = Vector2(133, 1)
+position = Vector2(157, -61)
 metadata/_edit_group_ = true
 
-[node name="Icon" type="Sprite2D" parent="silla2"]
-scale = Vector2(0.601563, 0.585938)
-texture = ExtResource("1_2i5g6")
+[node name="Icon2" type="Sprite2D" parent="silla2"]
+modulate = Color(1, 0.827451, 0.905882, 1)
+position = Vector2(0, 48.612)
+scale = Vector2(7, 5.759)
+texture = ExtResource("2_osaqi")
+region_enabled = true
+region_rect = Rect2(48.7819, 409.749, 12.1889, 22.3672)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silla2"]
+[node name="CollisionShape2" type="CollisionShape2D" parent="silla2"]
+position = Vector2(0, 51)
 shape = SubResource("RectangleShape2D_n3g6h")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-4, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_smutr")

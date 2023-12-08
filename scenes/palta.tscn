@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://t0106fi8ojti"]
+[gd_scene load_steps=4 format=3 uid="uid://t0106fi8ojti"]
 
 [ext_resource type="Script" path="res://scenes/palta.gd" id="1_2opim"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_4e5sk"]
-[ext_resource type="TileSet" uid="uid://cencsdp8ssu2l" path="res://scenes/food.tres" id="3_8y86v"]
+[ext_resource type="Texture2D" uid="uid://b7h52tgrbs0vi" path="res://assets/food/FOOD.png" id="2_rvh4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyc3j"]
 size = Vector2(225, 127)
@@ -14,18 +13,13 @@ script = ExtResource("1_2opim")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-visible = false
-texture = ExtResource("2_4e5sk")
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("2_rvh4o")
+region_enabled = true
+region_rect = Rect2(494.825, 503.011, 16.3356, 15.9586)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-51.5, 0)
 shape = SubResource("RectangleShape2D_eyc3j")
-
-[node name="TileMap" type="TileMap" parent="Area2D"]
-position = Vector2(67, 17)
-scale = Vector2(6, 6)
-tile_set = ExtResource("3_8y86v")
-format = 2
-layer_0/tile_data = PackedInt32Array(-1, 1245184, 19)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
