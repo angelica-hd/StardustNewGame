@@ -70,7 +70,7 @@ func send_comanda(comanda):
 		elif pedido == "palta":
 			pedido_node = preload("res://scenes/comanda_palta.tscn").instantiate()
 		if index != -1:
-			comandas.lista_comandas[index] = 1
+			comandas.lista_comandas[index] = pedido
 			comandas.slots_array[index].add_child(pedido_node)
 	
 @rpc("call_local", "authority", "reliable")
@@ -90,6 +90,10 @@ func send_gan(drop = false):
 func send_atendido_mesa():
 	atendido_mesa = true
 	esperando.visible = false
+	var comandas = get_tree().root.get_node("restaurante/comandas")
+	#var index = comandas.lista_comandas.find(pedido,0)
+	#comandas.slots_array[index].remove_child(0)
+	#comandas.lista_comandas[index] = 0
 
 @rpc("call_local", "reliable", "any_peer")
 func send_pedido_tomado():

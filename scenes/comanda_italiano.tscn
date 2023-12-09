@@ -10,7 +10,7 @@ scale = Vector2(2, 2)
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-modulate = Color(0.631373, 0.52549, 0.0823529, 0.784314)
+modulate = Color(0, 0.568627, 0.843137, 0.784314)
 position = Vector2(-0.250003, -0.749998)
 scale = Vector2(0.316406, 0.464844)
 texture = ExtResource("1_7ks4b")

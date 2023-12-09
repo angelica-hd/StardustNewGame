@@ -21,7 +21,7 @@ func variate_texture():
 			texture = chosen_texture
 			send_texture_id.rpc(texture_id)
 
-@rpc("call_local","reliable","authority")
+@rpc("call_local","reliable","any_peer")
 func send_texture_id(id):
 	var chosen_texture: Texture = Texture_variations[id]
 	texture = chosen_texture
