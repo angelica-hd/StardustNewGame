@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://btubo7fj5345l"]
+
+[ext_resource type="Script" path="res://scenes/basurero.gd" id="1_rdve5"]
+[ext_resource type="Texture2D" uid="uid://b7h52tgrbs0vi" path="res://assets/food/FOOD.png" id="2_nfmdu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey3cx"]
+size = Vector2(52, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxtiu"]
+
+[node name="basurero" type="StaticBody2D"]
+script = ExtResource("1_rdve5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ey3cx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_sxtiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.78814e-06, -1.78814e-06)
+scale = Vector2(4.44444, 4.44444)
+texture = ExtResource("2_nfmdu")
+region_enabled = true
+region_rect = Rect2(317, 656, 18, 18)
