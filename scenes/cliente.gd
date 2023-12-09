@@ -12,6 +12,8 @@ var opciones_pedido : Array = ["italiano", "palta", "tomate"]
 var pedido = 0
 var pedido_tomado = false
 
+var index_pedido = null
+
 signal dropped
 
 var dropped_in_mesilla = false
@@ -60,6 +62,7 @@ func send_comanda(comanda):
 	Debug.dprint(comanda)
 	var comandas = get_tree().root.get_node("restaurante/comandas")
 	var index = comandas.lista_comandas.find(0,0)
+	index_pedido = index
 	pedido = comanda
 	if not is_multiplayer_authority():
 		var pedido_node = null
@@ -91,9 +94,10 @@ func send_atendido_mesa():
 	atendido_mesa = true
 	esperando.visible = false
 	var comandas = get_tree().root.get_node("restaurante/comandas")
-	#var index = comandas.lista_comandas.find(pedido,0)
-	#comandas.slots_array[index].remove_child(0)
-	#comandas.lista_comandas[index] = 0
+	if index_pedido != null:
+		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
+		comandas.slots_array[index_pedido].remove_child(old_comanda)
+		comandas.lista_comandas[index_pedido] = 0
 
 @rpc("call_local", "reliable", "any_peer")
 func send_pedido_tomado():
