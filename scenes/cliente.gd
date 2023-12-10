@@ -20,7 +20,6 @@ var dropped_in_mesilla = false
 var selected = false
 var atendido_fila =  false
 var atendido_mesa = false
-var me_jui = false
 
 var pago = 0
 
@@ -29,6 +28,7 @@ var pago = 0
 @onready var enojo = $enojo
 @onready var timer_enojo = $TimerEnojo
 var enojado = false
+@onready var feliz = $feliz
 
 # TIMER COSAS
 func timer_process(delta):
@@ -44,8 +44,12 @@ func timer_process(delta):
 			send_enojo.rpc()
 			enojado = true
 		elif enojado and sec < 0:
-			me_voy.rpc()
-			
+			me_voy_enojado.rpc()
+		elif atendido_mesa and sec < 3:
+			send_feliz.rpc()
+			if sec < 0:
+				me_voy_feliz.rpc()
+
 func _on_timer_enojo_timeout():
 	pass # Replace with function body.
 	
@@ -54,7 +58,7 @@ func send_enojo():
 	enojo.visible = true
 
 @rpc("call_local","any_peer","reliable")
-func me_voy():
+func me_voy_enojado():
 	self.queue_free()
 	var comandas = get_tree().root.get_node("restaurante/comandas")
 	if index_pedido != null:
@@ -62,6 +66,14 @@ func me_voy():
 		comandas.slots_array[index_pedido].remove_child(old_comanda)
 		comandas.lista_comandas[index_pedido] = 0
 
+@rpc("call_local","any_peer","reliable")
+func send_feliz():
+	feliz.visible = true
+	
+@rpc("call_local","any_peer","reliable")
+func me_voy_feliz():
+	self.queue_free()
+	
 #COMANDA COSAS
 func generar_pedido():
 	if opciones_pedido.size() > 1:
@@ -131,6 +143,7 @@ func send_gan(drop = false):
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
+	sec = 7
 	exclamacion.visible = false
 	esperando.visible = false
 	enojo.visible = false
@@ -161,7 +174,7 @@ func _ready():
 	exclamacion.hide()
 	esperando.hide()
 	enojo.hide()
-	
+	feliz.hide()
 	# COMANDA COSAS
 	generar_pedido()
 	area_2d.body_entered.connect(_on_player_entered)
