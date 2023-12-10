@@ -52,7 +52,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 #COMANDA COSAS
 func _on_player_entered(body):
 	var player = body as Player
-	if player and pedido_tomado == false:
+	if player and pedido_tomado == false and atendido_fila:
 		pedido_tomado = true
 		send_pedido_tomado.rpc()
 		send_comanda.rpc(pedido)
