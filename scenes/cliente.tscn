@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://o52u0d27mabd"]
+[gd_scene load_steps=11 format=3 uid="uid://o52u0d27mabd"]
 
 [ext_resource type="Script" path="res://scenes/cliente.gd" id="1_27m6i"]
 [ext_resource type="PackedScene" uid="uid://ddwm3q5gptjeg" path="res://scenes/exclamacion.tscn" id="2_2eaby"]
 [ext_resource type="Script" path="res://scenes/client_sprites.gd" id="2_l14el"]
 [ext_resource type="PackedScene" uid="uid://nsnn038duw7p" path="res://scenes/esperando.tscn" id="3_xbi2u"]
+[ext_resource type="PackedScene" uid="uid://crj7e1cll4h54" path="res://scenes/enojo.tscn" id="4_v7bde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbf4v"]
 size = Vector2(86, 91.5)
@@ -51,12 +52,16 @@ _data = {
 [node name="cliente" type="RigidBody2D" groups=["clientes"]]
 lock_rotation = true
 script = ExtResource("1_27m6i")
+sec = 20
 
 [node name="exclamacion" parent="." instance=ExtResource("2_2eaby")]
-position = Vector2(0, -67)
+position = Vector2(0, -70)
 
 [node name="esperando" parent="." instance=ExtResource("3_xbi2u")]
-position = Vector2(0, -68)
+position = Vector2(0, -70)
+
+[node name="enojo" parent="." instance=ExtResource("4_v7bde")]
+position = Vector2(0, -70)
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
@@ -78,4 +83,7 @@ libraries = {
 "": SubResource("AnimationLibrary_lqwxo")
 }
 
+[node name="TimerEnojo" type="Timer" parent="."]
+
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="timeout" from="TimerEnojo" to="." method="_on_timer_enojo_timeout"]

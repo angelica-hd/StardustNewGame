@@ -24,6 +24,43 @@ var me_jui = false
 
 var pago = 0
 
+# TIMER COSAS
+@export var sec = 0
+@onready var enojo = $enojo
+@onready var timer_enojo = $TimerEnojo
+var enojado = false
+
+# TIMER COSAS
+func timer_process(delta):
+	if sec > 0:
+		sec -=0.01
+		if not atendido_fila and sec < 10 and not enojado:
+			send_enojo.rpc()
+			enojado = true
+		elif not pedido_tomado and sec < 10 and not enojado:
+			send_enojo.rpc()
+			enojado = true
+		elif not atendido_mesa and sec < 10 and not enojado:
+			send_enojo.rpc()
+			enojado = true
+		elif enojado and sec < 0:
+			me_voy.rpc()
+func _on_timer_enojo_timeout():
+	pass # Replace with function body.
+	
+@rpc("call_local","any_peer","reliable")
+func send_enojo():
+	enojo.visible = true
+
+@rpc("call_local","any_peer","reliable")
+func me_voy():
+	self.queue_free()
+	var comandas = get_tree().root.get_node("restaurante/comandas")
+	if index_pedido != null:
+		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
+		comandas.slots_array[index_pedido].remove_child(old_comanda)
+		comandas.lista_comandas[index_pedido] = 0
+
 #COMANDA COSAS
 func generar_pedido():
 	if opciones_pedido.size() > 1:
@@ -53,7 +90,6 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 func _on_player_entered(body):
 	var player = body as Player
 	if player and pedido_tomado == false and atendido_fila:
-		pedido_tomado = true
 		send_pedido_tomado.rpc()
 		send_comanda.rpc(pedido)
 
@@ -87,12 +123,16 @@ func send_gan(drop = false):
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
 		atendido_fila = true
+		enojado = false
+		sec = 20
 		animation_player.stop()
-		
+
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
 	esperando.visible = false
+	enojo.visible = false
+	enojado = false
 	var comandas = get_tree().root.get_node("restaurante/comandas")
 	if index_pedido != null:
 		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
@@ -102,11 +142,15 @@ func send_atendido_mesa():
 @rpc("call_local", "reliable", "any_peer")
 func send_pedido_tomado():
 	pedido_tomado = true
+	enojado = false
 	exclamacion.visible = false
+	enojo.visible = false
+	sec = 20
 	esperando.visible = true
 	
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
+	enojo.visible = false
 	exclamacion.visible = true
 	
 # Called when the node enters the scene tree for the first time.
@@ -114,6 +158,8 @@ func _ready():
 	animation_player.play("alien")
 	exclamacion.hide()
 	esperando.hide()
+	enojo.hide()
+	
 	# COMANDA COSAS
 	generar_pedido()
 	area_2d.body_entered.connect(_on_player_entered)
@@ -130,7 +176,7 @@ func _ready():
 func _process(delta):
 	if selected:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
-
+	timer_process(delta)
 #	if atendido_mesa:
 #		set_pago_cliente.rpc(50)
 

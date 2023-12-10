@@ -6,12 +6,14 @@ extends Node2D
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
 @onready var meta = $Meta/meta
-@export var meta_dia = 50
+@export var meta_dia = 100
 @onready var countdown = $countdown 
 var ganancias = 0
 @onready var mesa_ing = $mesaIng
 @export var sec = 0
 @onready var timer_cliente = $TimerCliente
+
+@export var max_clientes_dia = 0
 
 var packed_cliente = preload("res://scenes/cliente.tscn")
 
@@ -22,11 +24,12 @@ func timer_process(delta):
 		sec -=0.1
 	else:
 		var clientes_fila = get_tree().get_nodes_in_group("clientes")
-		if len(clientes_fila) < 5:
+		if len(clientes_fila) < 5 and max_clientes_dia > 0:
 			var new_client = packed_cliente.instantiate()
 			var pos = spawn.get_child(2).global_position
 			add_child(new_client, true)
 			new_client.global_position = pos
+			max_clientes_dia-=1
 			sec = 10
 
 func _on_timer_cliente_timeout():

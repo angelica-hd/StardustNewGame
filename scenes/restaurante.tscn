@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c73h1at2t0bua"]
+[gd_scene load_steps=17 format=3 uid="uid://c73h1at2t0bua"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_i6r40"]
 [ext_resource type="PackedScene" uid="uid://dyir1uqbqim4o" path="res://scenes/mesero.tscn" id="2_2t2rv"]
@@ -30,6 +30,7 @@ script = ExtResource("1_i6r40")
 mesero_scene = ExtResource("2_2t2rv")
 chef_scene = ExtResource("3_jj02r")
 sec = 10
+max_clientes_dia = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -139,6 +140,7 @@ vertical_alignment = 3
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_3uvn3")
 volume_db = 10.69
+autoplay = true
 bus = &"Niveles"
 
 [node name="comandas" parent="." instance=ExtResource("11_3htdq")]
