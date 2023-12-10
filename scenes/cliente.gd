@@ -45,6 +45,7 @@ func timer_process(delta):
 			enojado = true
 		elif enojado and sec < 0:
 			me_voy.rpc()
+			
 func _on_timer_enojo_timeout():
 	pass # Replace with function body.
 	
@@ -76,7 +77,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				send_position.rpc(position)
 				dropped.emit()
 				send_gan.rpc()
-				if atendido_fila:
+				if atendido_fila and not pedido_tomado:
 					send_pensamiento.rpc()
 		else:
 			selected = true
@@ -130,6 +131,7 @@ func send_gan(drop = false):
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
+	exclamacion.visible = false
 	esperando.visible = false
 	enojo.visible = false
 	enojado = false
