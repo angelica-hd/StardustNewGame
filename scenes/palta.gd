@@ -4,6 +4,7 @@ extends Node2D
 @onready var area_2dd = $Area2D
 var selected = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area_2dd.body_entered.connect(_on_player_entered)
@@ -31,9 +32,12 @@ func pick_up(role):
 					parent.remove_child(self)
 					tocomple.add_child(self)
 					tocomple.has_palta = self
+					self.visible = false
 					if not tocomple.has_tomate:
+						tocomple.sprite_2d.texture = preload("res://assets/food/palta_base.PNG")
 						tocomple.tipo_completo = "palta"
 					else:
+						tocomple.sprite_2d.texture = preload("res://assets/food/italiano_base.PNG")
 						tocomple.tipo_completo = "italiano"
 					position = Vector2.ZERO 
 			

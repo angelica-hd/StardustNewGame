@@ -1,6 +1,8 @@
 class_name Tocomple
 extends Node2D
 
+
+@onready var sprite_2d = $Area2D/Sprite2D
 @onready var area_2dd = $Area2D
 var selected = false
 var come = false

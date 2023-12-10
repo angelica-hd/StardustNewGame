@@ -30,9 +30,12 @@ func pick_up(role):
 					parent.remove_child(self)
 					tocomple.add_child(self)
 					tocomple.has_tomate = self
+					self.visible = false
 					if not tocomple.has_palta:
+						tocomple.sprite_2d.texture = preload("res://assets/food/tomate_base.PNG")
 						tocomple.tipo_completo = "tomate"
 					else:
+						tocomple.sprite_2d.texture = preload("res://assets/food/italiano_base.PNG")
 						tocomple.tipo_completo = "italiano"
 					position = Vector2.ZERO 
 
