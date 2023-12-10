@@ -1,9 +1,17 @@
 class_name Tocomple
 extends Node2D
 
+
+@onready var sprite_2d = $Area2D/Sprite2D
 @onready var area_2dd = $Area2D
 var selected = false
 var come = false
+
+#Ingredientes:
+var has_tomate = null
+var has_palta = null
+
+var tipo_completo = "hotdog"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,21 +52,21 @@ func pick_up(role):
 					
 @rpc("call_local","reliable","any_peer")
 func client_pick_up(client):
-	
 	client = get_tree().root.get_node(client)
 	if client.atendido_fila == true and client.atendido_mesa == false: 
-		if get_parent() is Player:
-			get_parent().has_tocomple = null
-		get_parent().remove_child(self)
-		client.add_child(self)
-		position = Vector2.ZERO
-		#send_come.rpc()
-		#client.atendido_mesa = true
-		if is_multiplayer_authority():
-			Game.main.send_pago.rpc(50)
-		client.send_atendido_mesa.rpc()
-		#ganancias += 50
-		#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
+		if client.pedido == tipo_completo:
+			if get_parent() is Player:
+				get_parent().has_tocomple = null
+			get_parent().remove_child(self)
+			client.add_child(self)
+			position = Vector2.ZERO
+			#send_come.rpc()
+			#client.atendido_mesa = true
+			if is_multiplayer_authority():
+				Game.main.send_pago.rpc(50)
+			client.send_atendido_mesa.rpc()
+			#ganancias += 50
+			#get_tree().change_scene_to_file("res://scenes/Victoria-menu.tscn")
 
 func _on_player_entered(body):
 	var player = body as Player
@@ -72,7 +80,6 @@ func _on_player_entered(body):
 		if selected:
 			# si hay 0 tocomples en el player
 			if not (get_parent() is Cliente) or get_parent().atendido_mesa == false:
-				
 				pick_up.rpc(player.role)
 	if client:
 		#var new_parent2 = client.get_node(client.get_path())

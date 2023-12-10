@@ -6,6 +6,7 @@
 size = Vector2(566, 111)
 
 [node name="comandas" type="Node2D"]
+position = Vector2(918, 638)
 script = ExtResource("1_fgxwr")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -16,15 +17,16 @@ shape = SubResource("RectangleShape2D_qwrwo")
 [node name="slots" type="Node" parent="."]
 
 [node name="s1" type="Marker2D" parent="slots"]
-position = Vector2(210, 0)
+position = Vector2(1127, 638)
 
 [node name="s2" type="Marker2D" parent="slots"]
-position = Vector2(110, 0)
+position = Vector2(1027, 638)
 
 [node name="s3" type="Marker2D" parent="slots"]
-position = Vector2(-110, 0)
+position = Vector2(918, 638)
 
 [node name="s4" type="Marker2D" parent="slots"]
-position = Vector2(-210, 0)
+position = Vector2(818, 638)
 
 [node name="s5" type="Marker2D" parent="slots"]
+position = Vector2(715, 638)

@@ -21,7 +21,9 @@ func _physics_process(delta):
 			velocity = position.direction_to(target) * speed
 		if position.distance_to(target) > 10:
 			move_and_slide()
-		
+		else:
+			velocity = Vector2(0,0)
+			
 func setup(player_data: Statics.PlayerData):
 	set_multiplayer_authority(player_data.id)
 	name = str(player_data.id)

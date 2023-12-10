@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://w1sm406umlrj"]
+
+[ext_resource type="Texture2D" uid="uid://5llsc54lhlx4" path="res://assets/food/palta.PNG" id="1_ltakg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e11ei"]
+size = Vector2(20.25, 17.5)
+
+[node name="comanda_tomate" type="Node2D" groups=["comanda"]]
+scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_ltakg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.25, 0.25)
+scale = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_e11ei")

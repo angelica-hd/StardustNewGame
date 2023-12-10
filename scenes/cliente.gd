@@ -1,10 +1,18 @@
 class_name Cliente
 extends Node2D
 
-@onready var pensamiento = $pensamiento
+@onready var esperando = $esperando
+@onready var exclamacion = $exclamacion
 @onready var markp = $markp
-@onready var area_2d = $Area2D
 @onready var animation_player = $AnimationPlayer
+@onready var area_2d = $Area2D
+
+# COMANDA COSAS
+var opciones_pedido : Array = ["italiano", "palta", "tomate"]
+var pedido = 0
+var pedido_tomado = false
+
+var index_pedido = null
 
 signal dropped
 
@@ -16,6 +24,13 @@ var me_jui = false
 
 var pago = 0
 
+#COMANDA COSAS
+func generar_pedido():
+	if opciones_pedido.size() > 1:
+			var pedido_id: int = randi() % opciones_pedido.size()
+			var chosen_pedido: String = opciones_pedido[pedido_id]
+			pedido = chosen_pedido
+	
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if is_multiplayer_authority():
 		if !Input.is_action_pressed("right_click"):
@@ -23,13 +38,44 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				selected = false
 				send_position.rpc(position)
 				dropped.emit()
-#				if atendido_mesa 
 				send_gan.rpc()
 				if atendido_fila:
 					send_pensamiento.rpc()
 		else:
 			selected = true
+			
+		#COMANDA COSAS
+		var bodies = area_2d.get_overlapping_bodies()
+		for body in bodies:
+				_on_player_entered(body)
 
+#COMANDA COSAS
+func _on_player_entered(body):
+	var player = body as Player
+	if player and pedido_tomado == false and atendido_fila:
+		pedido_tomado = true
+		send_pedido_tomado.rpc()
+		send_comanda.rpc(pedido)
+
+@rpc("call_local", "reliable", "any_peer")
+func send_comanda(comanda):
+	Debug.dprint(comanda)
+	var comandas = get_tree().root.get_node("restaurante/comandas")
+	var index = comandas.lista_comandas.find(0,0)
+	index_pedido = index
+	pedido = comanda
+	if not is_multiplayer_authority():
+		var pedido_node = null
+		if pedido == "italiano":
+			pedido_node = preload("res://scenes/comanda_italiano.tscn").instantiate()
+		elif pedido == "tomate":
+			pedido_node = preload("res://scenes/comanda_tomate.tscn").instantiate()
+		elif pedido == "palta":
+			pedido_node = preload("res://scenes/comanda_palta.tscn").instantiate()
+		if index != -1:
+			comandas.lista_comandas[index] = pedido
+			comandas.slots_array[index].add_child(pedido_node)
+	
 @rpc("call_local", "authority", "reliable")
 func send_position(pos):
 	position = pos
@@ -46,19 +92,34 @@ func send_gan(drop = false):
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
 	atendido_mesa = true
+	esperando.visible = false
+	var comandas = get_tree().root.get_node("restaurante/comandas")
+	if index_pedido != null:
+		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
+		comandas.slots_array[index_pedido].remove_child(old_comanda)
+		comandas.lista_comandas[index_pedido] = 0
 
+@rpc("call_local", "reliable", "any_peer")
+func send_pedido_tomado():
+	pedido_tomado = true
+	exclamacion.visible = false
+	esperando.visible = true
+	
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
-	pensamiento.visible = true
+	exclamacion.visible = true
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_player.play("alien")
-	pensamiento.hide()
+	exclamacion.hide()
+	esperando.hide()
+	# COMANDA COSAS
+	generar_pedido()
+	area_2d.body_entered.connect(_on_player_entered)
 	var id = multiplayer.get_unique_id()
 	var player = Game.get_player(id)
 	var role = player.role
-	Debug.dprint(role)
 	if role == 1:
 		get_node("Area2D/CollisionShape2D").disabled = true
 	for p in Game.players:

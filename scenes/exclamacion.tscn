@@ -1,7 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddwm3q5gptjeg"]
 
-[ext_resource type="Script" path="res://scenes/pensamiento.gd" id="1_e3pdl"]
 [ext_resource type="Texture2D" uid="uid://ck60yv0tmo5ac" path="res://assets/bubble_emotes_july_update.png" id="1_ees1l"]
+[ext_resource type="Script" path="res://scenes/exclamacion.gd" id="1_sgqhr"]
+
+[sub_resource type="Animation" id="Animation_fpruf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_lxul0"]
 resource_name = "exclamacion"
@@ -20,29 +35,14 @@ tracks/0/keys = {
 "values": [0, 2, 1]
 }
 
-[sub_resource type="Animation" id="Animation_fpruf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ylllg"]
 _data = {
 "RESET": SubResource("Animation_fpruf"),
 "exclamacion": SubResource("Animation_lxul0")
 }
 
-[node name="pensamiento" type="Node2D"]
-script = ExtResource("1_e3pdl")
+[node name="exclamacion" type="Node2D"]
+script = ExtResource("1_sgqhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

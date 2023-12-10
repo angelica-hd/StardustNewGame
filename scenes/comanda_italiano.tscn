@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc438vw6o5uyp"]
+
+[ext_resource type="Texture2D" uid="uid://1nudqh5pw33b" path="res://assets/food/italiano.PNG" id="1_qmos4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e11ei"]
+size = Vector2(20.5, 17.6667)
+
+[node name="comanda_tomate" type="Node2D" groups=["comanda"]]
+scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_qmos4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_e11ei")

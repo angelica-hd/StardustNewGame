@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://o52u0d27mabd"]
+[gd_scene load_steps=10 format=3 uid="uid://o52u0d27mabd"]
 
 [ext_resource type="Script" path="res://scenes/cliente.gd" id="1_27m6i"]
-[ext_resource type="PackedScene" uid="uid://ddwm3q5gptjeg" path="res://scenes/pensamiento.tscn" id="2_2eaby"]
+[ext_resource type="PackedScene" uid="uid://ddwm3q5gptjeg" path="res://scenes/exclamacion.tscn" id="2_2eaby"]
 [ext_resource type="Script" path="res://scenes/client_sprites.gd" id="2_l14el"]
+[ext_resource type="PackedScene" uid="uid://nsnn038duw7p" path="res://scenes/esperando.tscn" id="3_xbi2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbf4v"]
-size = Vector2(52, 91.5)
+size = Vector2(86, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7vn5"]
 size = Vector2(52, 91)
@@ -51,6 +52,12 @@ _data = {
 lock_rotation = true
 script = ExtResource("1_27m6i")
 
+[node name="exclamacion" parent="." instance=ExtResource("2_2eaby")]
+position = Vector2(0, -67)
+
+[node name="esperando" parent="." instance=ExtResource("3_xbi2u")]
+position = Vector2(0, -68)
+
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 hframes = 2
@@ -65,9 +72,6 @@ shape = SubResource("RectangleShape2D_wbf4v")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_n7vn5")
-
-[node name="pensamiento" parent="." instance=ExtResource("2_2eaby")]
-position = Vector2(0, -65)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
