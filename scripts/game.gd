@@ -22,7 +22,7 @@ const SERVER_PORT = 5409
 var thread = null
 
 var main
-
+signal exit_game_requested
 func add_player(player: Statics.PlayerData) -> void:
 	players.append(player)
 	players_updated.emit()
@@ -91,14 +91,14 @@ func _ready():
 func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.
 	thread.wait_to_finish()
-
+	
+@rpc("any_peer", "call_local", "reliable")
+func exit_game():
+	# Emit the custom signal to notify other players to exit
+	get_tree().quit()
+	exit_game_requested.emit()
 
 @rpc("any_peer", "call_local", "reliable")
 func pause(value: bool) -> void:
 	get_tree().paused = value
 	paused.emit()
-	
-func _disconnect():
-	multiplayer.multiplayer_peer.close()
-	Game.players = []
-	

@@ -9,7 +9,7 @@ func _ready():
 	resume.pressed.connect(_on_resume_pressed)
 	#retry.pressed.connect(_on_retry_pressed)
 	menu_p.pressed.connect(_on_main_menu_pressed)
-	quit.pressed.connect(func(): get_tree().quit())
+	quit.pressed.connect(_on_quit_pressed)
 	Game.paused.connect(_on_game_paused)
 
 func _input(event):
@@ -20,8 +20,9 @@ func _input(event):
 func _on_resume_pressed():
 	Game.pause.rpc(false)
 	
-func _on_retry_pressed():
-	pass
+func _on_quit_pressed():
+	Game.exit_game.rpc()
+	
 	
 func _on_main_menu_pressed():
 	Game.pause.rpc(false)
