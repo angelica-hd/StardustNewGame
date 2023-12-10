@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cjccvc7gpf4dh" path="res://scenes/mesaIng.tscn" id="9_co5sh"]
 [ext_resource type="PackedScene" uid="uid://8tn07n522e66" path="res://scenes/comandas.tscn" id="11_3htdq"]
 [ext_resource type="AudioStream" uid="uid://b16uxhjk58oxi" path="res://assets/music/lvl1-8-Bit-Arcade.mp3" id="11_3uvn3"]
+[ext_resource type="PackedScene" uid="uid://btubo7fj5345l" path="res://scenes/basurero.tscn" id="11_v5xhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr5cm"]
 size = Vector2(1089.25, 17)
@@ -141,5 +142,8 @@ volume_db = 10.69
 bus = &"Niveles"
 
 [node name="comandas" parent="." instance=ExtResource("11_3htdq")]
+
+[node name="basurero" parent="." instance=ExtResource("11_v5xhn")]
+position = Vector2(575, 497)
 
 [connection signal="timeout" from="TimerCliente" to="." method="_on_timer_cliente_timeout"]
