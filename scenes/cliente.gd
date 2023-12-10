@@ -6,6 +6,7 @@ extends Node2D
 @onready var markp = $markp
 @onready var animation_player = $AnimationPlayer
 @onready var area_2d = $Area2D
+@onready var icon = $Icon
 
 # COMANDA COSAS
 var opciones_pedido : Array = ["italiano", "palta", "tomate"]
@@ -43,8 +44,10 @@ func timer_process(delta):
 		elif not atendido_mesa and sec < 10 and not enojado:
 			send_enojo.rpc()
 			enojado = true
-		elif enojado and sec < 0:
-			me_voy_enojado.rpc()
+		if enojado and sec < 3:
+			send_color_enojado.rpc()
+			if enojado and sec < 0:
+				me_voy_enojado.rpc()
 		elif atendido_mesa and sec < 3:
 			send_feliz.rpc()
 			if sec < 0:
@@ -56,7 +59,11 @@ func _on_timer_enojo_timeout():
 @rpc("call_local","any_peer","reliable")
 func send_enojo():
 	enojo.visible = true
-
+	
+@rpc("call_local","any_peer","reliable")
+func send_color_enojado():
+	self.icon.modulate = Color(0.96,0.2,0.18,1)
+	
 @rpc("call_local","any_peer","reliable")
 func me_voy_enojado():
 	self.queue_free()
@@ -137,6 +144,7 @@ func send_gan(drop = false):
 	if dropped_in_mesilla:
 		atendido_fila = true
 		enojado = false
+		icon.modulate = Color(1,1,1,1)
 		sec = 20
 		animation_player.stop()
 
@@ -148,6 +156,7 @@ func send_atendido_mesa():
 	esperando.visible = false
 	enojo.visible = false
 	enojado = false
+	icon.modulate = Color(1,1,1,1)
 	var comandas = get_tree().root.get_node("restaurante/comandas")
 	if index_pedido != null:
 		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
@@ -161,12 +170,14 @@ func send_pedido_tomado():
 	exclamacion.visible = false
 	enojo.visible = false
 	sec = 20
+	icon.modulate = Color(1,1,1,1)
 	esperando.visible = true
 	
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
 	enojo.visible = false
 	exclamacion.visible = true
+	icon.modulate = Color(1,1,1,1)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
