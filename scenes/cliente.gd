@@ -7,6 +7,7 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 @onready var area_2d = $Area2D
 @onready var icon = $Icon
+@onready var gpu_particles_2d = $GPUParticles2D
 
 # COMANDA COSAS
 var opciones_pedido : Array = ["italiano", "palta", "tomate"]
@@ -66,6 +67,8 @@ func send_color_enojado():
 	
 @rpc("call_local","any_peer","reliable")
 func me_voy_enojado():
+	gpu_particles_2d.emitting = true
+	await get_tree().create_timer(1.0).timeout
 	self.queue_free()
 	var comandas = get_tree().root.get_node("restaurante/comandas")
 	if index_pedido != null:
@@ -79,6 +82,8 @@ func send_feliz():
 	
 @rpc("call_local","any_peer","reliable")
 func me_voy_feliz():
+	gpu_particles_2d.emitting = true
+	await get_tree().create_timer(1.0).timeout
 	self.queue_free()
 	
 #COMANDA COSAS
@@ -181,6 +186,7 @@ func send_pensamiento():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gpu_particles_2d.emitting = false
 	animation_player.play("alien")
 	exclamacion.hide()
 	esperando.hide()
