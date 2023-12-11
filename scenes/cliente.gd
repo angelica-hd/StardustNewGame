@@ -216,7 +216,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 #	if !atendido_fila:
-	if selected and !atendido_fila:
+	if selected: # and !atendido_fila:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 			
 #	else:
