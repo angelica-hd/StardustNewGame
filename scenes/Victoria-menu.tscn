@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyvwsqndpvsp"]
+[gd_scene load_steps=7 format=3 uid="uid://cyvwsqndpvsp"]
 
 [ext_resource type="Script" path="res://scripts/Victoria-menu.gd" id="1_r142h"]
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="2_ore7p"]
@@ -14,6 +14,12 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 0.831373, 0, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_grv84"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = false
+properties/0/sync = false
+properties/0/watch = true
 
 [node name="Victoria-menu" type="MarginContainer"]
 modulate = Color(0.92549, 0.933333, 0.305882, 1)
@@ -65,6 +71,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Main Menu"
 
+[node name="next" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Next"
+
 [node name="exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -72,7 +83,10 @@ theme_override_font_sizes/font_size = 25
 text = "EXIT
 "
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_grv84")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3k1cl")
 volume_db = 8.357
 autoplay = true

@@ -230,8 +230,7 @@ func starting_game(value: bool):
 
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
-	get_tree().change_scene_to_file("res://scenes/restaurante.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/levels.tscn")
 
 
 func _check_ready() -> void:

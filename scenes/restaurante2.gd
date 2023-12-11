@@ -1,4 +1,4 @@
-class_name Main
+class_name Main2
 extends Node2D
 
 @export var mesero_scene: PackedScene
@@ -12,9 +12,9 @@ var ganancias = 0
 @onready var mesa_ing = $mesaIng
 @export var sec = 0
 @onready var timer_cliente = $TimerCliente
-
-@export var max_clientes_dia = 0
 signal level_ended
+@export var max_clientes_dia = 0
+
 var packed_cliente = preload("res://scenes/cliente.tscn")
 
 @onready var tocomple = mesa_ing.get_tocomple()[0]
@@ -24,7 +24,7 @@ func timer_process(delta):
 		sec -=0.1
 	else:
 		var clientes_fila = get_tree().get_nodes_in_group("clientes")
-		if len(clientes_fila) < 2 and max_clientes_dia > 0:
+		if len(clientes_fila) < 5 and max_clientes_dia > 0:
 			var new_client = packed_cliente.instantiate()
 			var pos = spawn.get_child(2).global_position
 			add_child(new_client, true)
@@ -65,13 +65,10 @@ func _process(delta: float) -> void:
 #	if tocomple.come == true:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
-			#if ganancias < meta_dia:
-			#	get_tree().change_scene_to_file("res://scenes/perder_menu.tscn")
-			#else:
 				level_ended.emit()
-				
 	# arreglo con los clientes en el nivel
 	var clientes_fila = get_tree().get_nodes_in_group("clientes")
+	
 	# sumar los pagos de cada uno de los clientes
 	# (aun no funciona bien)
 #	for cliente in clientes_fila:
