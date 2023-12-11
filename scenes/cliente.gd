@@ -8,6 +8,8 @@ extends Node2D
 @onready var area_2d = $Area2D
 @onready var icon = $Icon
 @onready var gpu_particles_2d = $GPUParticles2D
+@onready var collision_shape_2d_2 = $CollisionShape2D2
+@onready var collision_shape_2d = $Area2D/CollisionShape2D
 
 # COMANDA COSAS
 var opciones_pedido : Array = ["italiano", "palta", "tomate"]
@@ -24,6 +26,7 @@ var atendido_fila =  false
 var atendido_mesa = false
 
 var pago = 0
+var final_position = Vector2.ZERO
 
 # TIMER COSAS
 @export var sec = 0
@@ -104,7 +107,10 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				if atendido_fila and not pedido_tomado:
 					send_pensamiento.rpc()
 		else:
-			selected = true
+			# si stá presionado el click derecho
+			# se revisa si hay alguno seleccionado hasta el momento
+			if Game.able_to_be_selected():
+				selected = true
 			
 		#COMANDA COSAS
 		var bodies = area_2d.get_overlapping_bodies()
@@ -142,8 +148,8 @@ func send_position(pos):
 	position = pos
 
 @rpc("call_local", "reliable", "any_peer")
-func send_gan(drop = false):
-	if drop:
+func send_gan(drop = false, hay_cliente = false):
+	if drop and !hay_cliente:
 		dropped_in_mesilla = true
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
@@ -152,6 +158,8 @@ func send_gan(drop = false):
 		icon.modulate = Color(1,1,1,1)
 		sec = 20
 		animation_player.stop()
+		# guardamos la posicio final del cliente (en la mesa)
+		final_position = global_position
 
 @rpc("call_local", "reliable", "any_peer")
 func send_atendido_mesa():
@@ -204,10 +212,16 @@ func _ready():
 		if p.role == 2:
 			set_multiplayer_authority(p.id)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if selected:
+#	if !atendido_fila:
+	if selected: # and !atendido_fila:
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
+			
+#	else:
+#		global_position = final_position
+	
 	timer_process(delta)
 #	if atendido_mesa:
 #		set_pago_cliente.rpc(50)
