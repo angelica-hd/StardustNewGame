@@ -12,4 +12,4 @@ func _on_menu():
 	get_tree().change_scene_to_file("res://scenes/Main_menu.tscn")	
 	
 func _on_exit():
-	get_tree().quit()
+	Game.exit_game.rpc()

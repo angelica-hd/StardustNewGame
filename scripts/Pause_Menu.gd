@@ -22,8 +22,7 @@ func _on_resume_pressed():
 	
 func _on_quit_pressed():
 	Game.exit_game.rpc()
-	
-	
+
 func _on_main_menu_pressed():
 	Game.pause.rpc(false)
 	_disconnect()
