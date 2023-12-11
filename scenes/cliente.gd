@@ -145,8 +145,8 @@ func send_position(pos):
 	position = pos
 
 @rpc("call_local", "reliable", "any_peer")
-func send_gan(drop = false):
-	if drop:
+func send_gan(drop = false, hay_cliente = false):
+	if drop and !hay_cliente:
 		dropped_in_mesilla = true
 	# solo si se encuentra en una mesilla, sino no
 	if dropped_in_mesilla:
