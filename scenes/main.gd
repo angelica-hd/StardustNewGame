@@ -13,6 +13,7 @@ var ganancias = 0
 @export var sec = 0
 @onready var timer_cliente = $TimerCliente
 
+var max_clientes_fila = 5
 @export var max_clientes_dia = 0
 signal level_ended
 var packed_cliente = preload("res://scenes/cliente.tscn")
@@ -24,11 +25,12 @@ func timer_process(delta):
 		sec -=0.1
 	else:
 		var clientes_fila = get_tree().get_nodes_in_group("clientes")
-		if len(clientes_fila) < 5 and max_clientes_dia > 0:
+		if max_clientes_fila > 0  and max_clientes_dia > 0:
 			var new_client = packed_cliente.instantiate()
 			var pos = spawn.get_child(2).global_position
 			add_child(new_client, true)
 			new_client.global_position = pos
+			max_clientes_fila-=1
 			max_clientes_dia-=1
 			sec = 10
 

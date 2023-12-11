@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://o52u0d27mabd"]
+[gd_scene load_steps=12 format=3 uid="uid://o52u0d27mabd"]
 
 [ext_resource type="Script" path="res://scenes/cliente.gd" id="1_27m6i"]
 [ext_resource type="PackedScene" uid="uid://ddwm3q5gptjeg" path="res://scenes/exclamacion.tscn" id="2_2eaby"]
-[ext_resource type="Script" path="res://scenes/client_sprites.gd" id="2_l14el"]
 [ext_resource type="PackedScene" uid="uid://nsnn038duw7p" path="res://scenes/esperando.tscn" id="3_xbi2u"]
 [ext_resource type="PackedScene" uid="uid://crj7e1cll4h54" path="res://scenes/enojo.tscn" id="4_v7bde"]
 [ext_resource type="PackedScene" uid="uid://b24llxx75u72" path="res://scenes/feliz.tscn" id="5_hc415"]
@@ -83,7 +82,6 @@ position = Vector2(0, -70)
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 hframes = 2
-script = ExtResource("2_l14el")
 
 [node name="Area2D" type="Area2D" parent="."]
 
