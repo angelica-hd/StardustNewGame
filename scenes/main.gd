@@ -73,11 +73,5 @@ func _process(delta: float) -> void:
 	# arreglo con los clientes en el nivel
 	var clientes_fila = get_tree().get_nodes_in_group("clientes")
 	
-	# sumar los pagos de cada uno de los clientes
-	# (aun no funciona bien)
-#	for cliente in clientes_fila:
-#		if cliente.atendido_mesa:
-#			var monto = cliente.get_pago_cliente()
-#			if monto > 0:
-#				ganancias += monto
-#				cliente.reset_pago_cliente.rpc()
+	Game.arr_clientes = clientes_fila
+	

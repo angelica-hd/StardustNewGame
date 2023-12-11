@@ -104,7 +104,10 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				if atendido_fila and not pedido_tomado:
 					send_pensamiento.rpc()
 		else:
-			selected = true
+			# si stá presionado el click derecho
+			# se revisa si hay alguno seleccionado hasta el momento
+			if Game.able_to_be_selected():
+				selected = true
 			
 		#COMANDA COSAS
 		var bodies = area_2d.get_overlapping_bodies()

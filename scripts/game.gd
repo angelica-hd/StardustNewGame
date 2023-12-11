@@ -102,3 +102,20 @@ func exit_game():
 func pause(value: bool) -> void:
 	get_tree().paused = value
 	paused.emit()
+
+# creamos un arreglo con los clientes (que parte vacío)
+# se actualiza en el process del restaurante (en main.gd)
+var arr_clientes = []
+
+# cuenta la cantidad de clientes que están agarrados
+# y retorna True si n hay ninguno seleccionado (es decir,
+# si se puede agarrar)
+func able_to_be_selected():
+	var count = 0
+	for client in arr_clientes:
+		if client.selected == true:
+			count += 1
+	
+	# si count es 0 retorna true, sino retorna false
+	return count == 0
+	
