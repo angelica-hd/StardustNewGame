@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm2hm2splgxry"]
+[gd_scene load_steps=6 format=3 uid="uid://bm2hm2splgxry"]
 
 [ext_resource type="Script" path="res://scenes/levels.gd" id="1_fjs48"]
 [ext_resource type="PackedScene" uid="uid://0a7vg3jon3pe" path="res://scenes/restaurante2.tscn" id="2_u8a4w"]
 [ext_resource type="PackedScene" uid="uid://c73h1at2t0bua" path="res://scenes/restaurante.tscn" id="3_kc0ng"]
 [ext_resource type="PackedScene" uid="uid://cyvwsqndpvsp" path="res://scenes/Victoria-menu.tscn" id="4_uji18"]
+[ext_resource type="PackedScene" uid="uid://b67dywls7nrik" path="res://scenes/perder_menu.tscn" id="5_fudab"]
 
 [node name="Levels" type="Node2D"]
 script = ExtResource("1_fjs48")
@@ -21,3 +22,9 @@ offset_top = -19.0
 offset_right = 1174.0
 offset_bottom = 675.0
 size_flags_horizontal = 1
+
+[node name="Perder-menu" parent="." instance=ExtResource("5_fudab")]
+offset_left = 57.0
+offset_top = 17.0
+offset_right = 505.0
+offset_bottom = 309.0

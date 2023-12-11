@@ -18,7 +18,7 @@ signal level_ended
 var packed_cliente = preload("res://scenes/cliente.tscn")
 
 @onready var tocomple = mesa_ing.get_tocomple()[0]
-
+signal losed_level
 func timer_process(delta):
 	if sec > 0:
 		sec -=0.1
@@ -65,9 +65,9 @@ func _process(delta: float) -> void:
 #	if tocomple.come == true:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
-			#if ganancias < meta_dia:
-			#	get_tree().change_scene_to_file("res://scenes/perder_menu.tscn")
-			#else:
+			if ganancias < meta_dia:
+				losed_level.emit()
+			else:
 				level_ended.emit()
 				
 	# arreglo con los clientes en el nivel

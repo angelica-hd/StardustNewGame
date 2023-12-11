@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b67dywls7nrik"]
+[gd_scene load_steps=7 format=3 uid="uid://b67dywls7nrik"]
 
 [ext_resource type="Script" path="res://scripts/Perder-menu.gd" id="1_ifguq"]
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="2_tnc7a"]
@@ -14,6 +14,12 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 0.831373, 0, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e2v4q"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = false
+properties/0/sync = false
+properties/0/watch = true
 
 [node name="Perder-menu" type="MarginContainer"]
 modulate = Color(0.988235, 0.87451, 0.847059, 1)
@@ -62,6 +68,11 @@ text = "You Lose"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="retry" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Retry"
+
 [node name="m_menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
@@ -74,8 +85,10 @@ theme_override_font_sizes/font_size = 25
 text = "EXIT
 "
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_e2v4q")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_nmmag")
 volume_db = 8.357
-autoplay = true
 bus = &"Niveles"
