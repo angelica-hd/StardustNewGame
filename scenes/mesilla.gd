@@ -28,7 +28,6 @@ func _on_body_exited(body):
 		cliente.dropped.disconnect(is_dropped)
 		# si el cliente que está saliendo ya fue atendido en la fila
 		if cliente.atendido_fila:
-			# se cambia la flag a false
 			hay_cliente = false
 		
 	
