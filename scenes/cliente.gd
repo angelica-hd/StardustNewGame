@@ -1,6 +1,14 @@
 class_name Cliente
 extends Node2D
 
+@export var Texture_variations : Array = [
+	preload("res://assets/clients/Sprite1.png"),
+	preload("res://assets/clients/Sprite2.png"),
+	preload("res://assets/clients/Sprite3.png"),
+	preload("res://assets/clients/Sprite4.png"),
+	preload("res://assets/clients/Sprite5.png")
+]
+
 @onready var esperando = $esperando
 @onready var exclamacion = $exclamacion
 @onready var markp = $markp
@@ -60,6 +68,20 @@ func timer_process(delta):
 func _on_timer_enojo_timeout():
 	pass # Replace with function body.
 	
+#TEXTURA COSAS
+func variate_texture():
+	if not is_multiplayer_authority():
+		if Texture_variations.size() > 1:
+			var texture_id: int = randi() % Texture_variations.size()
+			var chosen_texture: Texture = Texture_variations[texture_id]
+			#icon.texture = chosen_texture
+			send_texture_id.rpc(texture_id)
+
+@rpc("call_local","reliable","any_peer")
+func send_texture_id(id):
+	var chosen_texture: Texture = Texture_variations[id]
+	icon.texture = chosen_texture
+
 @rpc("call_local","any_peer","reliable")
 func send_enojo():
 	enojo.visible = true
@@ -194,6 +216,7 @@ func send_pensamiento():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	variate_texture()
 	gpu_particles_2d.emitting = false
 	animation_player.play("alien")
 	exclamacion.hide()
