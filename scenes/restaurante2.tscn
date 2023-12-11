@@ -30,7 +30,7 @@ script = ExtResource("1_kujks")
 mesero_scene = ExtResource("2_sg0u3")
 chef_scene = ExtResource("3_0s4x5")
 meta_dia = 200
-max_clientes_dia = 2
+max_clientes_dia = 7
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)

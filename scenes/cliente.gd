@@ -210,6 +210,8 @@ func send_pedido_tomado():
 	
 @rpc("call_local", "authority", "reliable")
 func send_pensamiento():
+	var res = get_parent()
+	res.max_clientes_fila +=1
 	enojo.visible = false
 	exclamacion.visible = true
 	icon.modulate = Color(1,1,1,1)
