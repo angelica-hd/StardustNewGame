@@ -73,7 +73,7 @@ func me_voy_enojado():
 	gpu_particles_2d.emitting = true
 	await get_tree().create_timer(1.0).timeout
 	self.queue_free()
-	var comandas = get_tree().root.get_node("restaurante/comandas")
+	var comandas = get_parent().get_node("comandas")
 	if index_pedido != null:
 		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
 		comandas.slots_array[index_pedido].remove_child(old_comanda)
@@ -127,7 +127,7 @@ func _on_player_entered(body):
 @rpc("call_local", "reliable", "any_peer")
 func send_comanda(comanda):
 	Debug.dprint(comanda)
-	var comandas = get_tree().root.get_node("restaurante/comandas")
+	var comandas = get_parent().get_node("comandas")
 	var index = comandas.lista_comandas.find(0,0)
 	index_pedido = index
 	pedido = comanda
@@ -170,7 +170,7 @@ func send_atendido_mesa():
 	enojo.visible = false
 	enojado = false
 	icon.modulate = Color(1,1,1,1)
-	var comandas = get_tree().root.get_node("restaurante/comandas")
+	var comandas = get_parent().get_node("comandas")
 	if index_pedido != null:
 		var old_comanda = comandas.slots_array[index_pedido].get_child(0)
 		comandas.slots_array[index_pedido].remove_child(old_comanda)
