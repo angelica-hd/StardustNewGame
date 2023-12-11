@@ -70,11 +70,11 @@ func _on_timer_enojo_timeout():
 	
 #TEXTURA COSAS
 func variate_texture():
-	if not is_multiplayer_authority():
-		if Texture_variations.size() > 1:
-			var texture_id: int = randi() % Texture_variations.size()
-			var chosen_texture: Texture = Texture_variations[texture_id]
-			#icon.texture = chosen_texture
+	if Texture_variations.size() > 1:
+		var texture_id: int = randi() % Texture_variations.size()
+		var chosen_texture: Texture = Texture_variations[texture_id]
+		icon.texture = chosen_texture
+		if not is_multiplayer_authority():
 			send_texture_id.rpc(texture_id)
 
 @rpc("call_local","reliable","any_peer")
