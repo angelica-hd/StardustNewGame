@@ -84,6 +84,11 @@ theme_override_font_sizes/font_size = 25
 text = "EXIT
 "
 
+[node name="credits" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "CREDITS"
+
 [node name="PanelContainer2" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
