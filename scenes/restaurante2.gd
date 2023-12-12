@@ -85,9 +85,11 @@ func _process(delta: float) -> void:
 	var t = countdown.get_child(0).get_child(0)
 	var tutos = tutorial.get_children()
 	timer_process(delta)
+	var level = get_parent().get_parent().current_level
 #	if tocomple.come == true:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
+		level = -2
 		tutos[0].visible = false
 		tutos[1].visible = false
 		tutos[2].visible = false
@@ -108,7 +110,7 @@ func _process(delta: float) -> void:
 	
 	Game.arr_clientes = clientes_fila
 	
-	var level = get_parent().get_parent().current_level
+
 	if level == 0 or level == -1:
 		if Input.is_action_pressed("left_click") and moved == false:
 			tutos[0].visible = false
