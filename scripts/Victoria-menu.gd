@@ -1,10 +1,12 @@
 extends MarginContainer
+
 @onready var m_menu = $PanelContainer/MarginContainer/VBoxContainer/m_menu
 @onready var exit = $PanelContainer/MarginContainer/VBoxContainer/exit
 @onready var next = $PanelContainer/MarginContainer/VBoxContainer/next
 var host_ready = false
 var client_ready = false
 signal all_ready
+@onready var music = $AudioStreamPlayer2D2
 
 func _ready():
 	hide()

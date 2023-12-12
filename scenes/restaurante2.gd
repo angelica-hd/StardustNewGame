@@ -1,6 +1,8 @@
 class_name Main2
 extends Node2D
 
+@onready var music = $AudioStreamPlayer2D
+
 @export var mesero_scene: PackedScene
 @export var chef_scene : PackedScene
 @onready var players: Node2D = $Players
@@ -38,7 +40,7 @@ func _on_timer_cliente_timeout():
 	pass
 	
 func _ready() -> void:
-	countdown.get_node("UI/Control").minutes = 2
+	countdown.get_node("UI/Control").minutes = 1
 	Game.main = self
 	Game.players.sort_custom(func (a, b): return a.id < b.id)
 	for i in Game.players.size():
@@ -69,8 +71,10 @@ func _process(delta: float) -> void:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
 			if ganancias < meta_dia:
+				music.stop()
 				losed_level.emit()
 			else:
+				music.stop()
 				level_ended.emit()
 				
 	# arreglo con los clientes en el nivel

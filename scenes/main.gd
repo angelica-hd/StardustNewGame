@@ -1,6 +1,8 @@
 class_name Main
 extends Node2D
 
+@onready var music = $AudioStreamPlayer2D
+
 @export var mesero_scene: PackedScene
 @export var chef_scene : PackedScene
 @onready var players: Node2D = $Players
@@ -20,6 +22,7 @@ var packed_cliente = preload("res://scenes/cliente.tscn")
 
 @onready var tocomple = mesa_ing.get_tocomple()[0]
 signal losed_level
+
 func timer_process(delta):
 	if sec > 0:
 		sec -=0.1
@@ -68,8 +71,10 @@ func _process(delta: float) -> void:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
 			if ganancias < meta_dia:
+				music.stop()
 				losed_level.emit()
 			else:
+				music.stop()
 				level_ended.emit()
 				
 	# arreglo con los clientes en el nivel
