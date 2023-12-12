@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjccvc7gpf4dh" path="res://scenes/mesaIng.tscn" id="7_vovkj"]
 [ext_resource type="PackedScene" uid="uid://8t1w6uqshu4g" path="res://scenes/timer.tscn" id="8_m7joa"]
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="9_3ekk6"]
-[ext_resource type="AudioStream" uid="uid://b16uxhjk58oxi" path="res://assets/music/lvl1-8-Bit-Arcade.mp3" id="10_58ro2"]
+[ext_resource type="AudioStream" uid="uid://bknjuj28vueom" path="res://assets/music/8 Bit Space Groove.mp3" id="10_l6hj2"]
 [ext_resource type="PackedScene" uid="uid://8tn07n522e66" path="res://scenes/comandas.tscn" id="11_1jmyt"]
 [ext_resource type="PackedScene" uid="uid://btubo7fj5345l" path="res://scenes/basurero.tscn" id="12_2ab6o"]
 
@@ -133,8 +133,8 @@ vertical_alignment = 3
 [node name="TimerCliente" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_58ro2")
-volume_db = 10.69
+stream = ExtResource("10_l6hj2")
+volume_db = 10.0
 autoplay = true
 bus = &"Niveles"
 

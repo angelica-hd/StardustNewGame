@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/levels.gd" id="1_fjs48"]
 [ext_resource type="PackedScene" uid="uid://0a7vg3jon3pe" path="res://scenes/restaurante2.tscn" id="2_u8a4w"]
 [ext_resource type="PackedScene" uid="uid://c73h1at2t0bua" path="res://scenes/restaurante.tscn" id="3_kc0ng"]
-[ext_resource type="PackedScene" uid="uid://8ovb4krc0a8i" path="res://win.tscn" id="4_mio4e"]
+[ext_resource type="PackedScene" path="res://win.tscn" id="4_mio4e"]
 [ext_resource type="PackedScene" uid="uid://cyvwsqndpvsp" path="res://scenes/Victoria-menu.tscn" id="4_uji18"]
 [ext_resource type="PackedScene" uid="uid://b67dywls7nrik" path="res://scenes/perder_menu.tscn" id="5_fudab"]
 

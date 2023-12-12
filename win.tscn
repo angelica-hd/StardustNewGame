@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ovb4krc0a8i"]
+[gd_scene load_steps=7 format=3 uid="uid://bhohe5ij2u038"]
 
 [ext_resource type="Script" path="res://win.gd" id="1_txedw"]
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="2_q0a4d"]
@@ -71,7 +71,7 @@ vertical_alignment = 1
 [node name="m_menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Main Menu"
+text = "MAIN MENU"
 
 [node name="exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
