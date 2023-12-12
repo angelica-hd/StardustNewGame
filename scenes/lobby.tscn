@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=9 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
 [ext_resource type="Texture2D" uid="uid://pl7n1ifavxe0" path="res://assets/fondo1.jpg" id="3_ok7l3"]
 [ext_resource type="FontFile" uid="uid://cdrosoem78nqn" path="res://assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" id="4_vd2cb"]
+[ext_resource type="AudioStream" uid="uid://beogklt80kvtx" path="res://assets/music/menu.mp3" id="5_dh6f2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avn8i"]
 bg_color = Color(0.960784, 0.545098, 0.415686, 1)
@@ -193,3 +194,9 @@ layout_mode = 2
 text = "5"
 
 [node name="StartTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dh6f2")
+volume_db = 10.69
+autoplay = true
+bus = &"Niveles"

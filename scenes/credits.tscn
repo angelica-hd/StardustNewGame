@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqlees1aprs8h"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ey23avvebx1"]
 
 [ext_resource type="Script" path="res://scenes/credits.gd" id="1_j8fvi"]
 [ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="1_qvkhv"]
 [ext_resource type="Texture2D" uid="uid://cer81o12ur84o" path="res://assets/tocomple.png" id="2_hnjv7"]
 [ext_resource type="Texture2D" uid="uid://dgh0c32k3a6ff" path="res://assets/star.png" id="3_341yp"]
+[ext_resource type="AudioStream" uid="uid://beogklt80kvtx" path="res://assets/music/menu.mp3" id="5_7pjb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytohn"]
 bg_color = Color(0.960784, 0.545098, 0.415686, 1)
@@ -203,3 +204,9 @@ grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("3_341yp")
 expand_mode = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7pjb4")
+volume_db = 10.69
+autoplay = true
+bus = &"Niveles"
