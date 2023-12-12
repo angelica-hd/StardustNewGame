@@ -1,19 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bm2hm2splgxry"]
+[gd_scene load_steps=7 format=3 uid="uid://bm2hm2splgxry"]
 
 [ext_resource type="Script" path="res://scenes/levels.gd" id="1_fjs48"]
 [ext_resource type="PackedScene" uid="uid://0a7vg3jon3pe" path="res://scenes/restaurante2.tscn" id="2_u8a4w"]
 [ext_resource type="PackedScene" uid="uid://c73h1at2t0bua" path="res://scenes/restaurante.tscn" id="3_kc0ng"]
+[ext_resource type="PackedScene" uid="uid://8ovb4krc0a8i" path="res://win.tscn" id="4_mio4e"]
 [ext_resource type="PackedScene" uid="uid://cyvwsqndpvsp" path="res://scenes/Victoria-menu.tscn" id="4_uji18"]
 [ext_resource type="PackedScene" uid="uid://b67dywls7nrik" path="res://scenes/perder_menu.tscn" id="5_fudab"]
 
 [node name="Levels" type="Node2D"]
 script = ExtResource("1_fjs48")
-levels = Array[PackedScene]([ExtResource("2_u8a4w"), ExtResource("3_kc0ng")])
+levels = Array[PackedScene]([ExtResource("2_u8a4w"), ExtResource("3_kc0ng"), ExtResource("4_mio4e")])
 
 [node name="levelcontainer" type="Node2D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/restaurante.tscn", "res://scenes/restaurante2.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/restaurante.tscn", "res://scenes/restaurante2.tscn", "res://win.tscn")
 spawn_path = NodePath("../levelcontainer")
 
 [node name="Victoria-menu" parent="." instance=ExtResource("4_uji18")]

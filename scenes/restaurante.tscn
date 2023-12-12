@@ -29,9 +29,8 @@ size = Vector2(388.5, 95.25)
 script = ExtResource("1_i6r40")
 mesero_scene = ExtResource("2_2t2rv")
 chef_scene = ExtResource("3_jj02r")
-meta_dia = 250
 sec = 10
-max_clientes_dia = 10
+max_clientes_dia = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)

@@ -19,10 +19,14 @@ func cargarNivel():
 	for child in level_container.get_children():
 		child.queue_free()
 	Game.arr_clientes = []
-	var level = levels[current_level].instantiate()
-	level_container.add_child(level, true)
-	level.level_ended.connect(level_en)
-	level.losed_level.connect(level_en2)
+	if current_level == 2:
+		var level = levels[current_level].instantiate()
+		level_container.add_child(level, true)
+	else:
+		var level = levels[current_level].instantiate()
+		level_container.add_child(level, true)
+		level.level_ended.connect(level_en)
+		level.losed_level.connect(level_en2)
 func level_en():
 	victory_menu.visible = true
 func level_en2():

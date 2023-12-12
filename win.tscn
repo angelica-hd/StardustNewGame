@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://8ovb4krc0a8i"]
+
+[ext_resource type="Script" path="res://win.gd" id="1_txedw"]
+[ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="2_q0a4d"]
+[ext_resource type="AudioStream" uid="uid://cwbi1o3dssbrd" path="res://assets/music/complete1.mp3" id="3_p6arw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5fct"]
+bg_color = Color(0.960784, 0.545098, 0.415686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxmsb"]
+bg_color = Color(0.941176, 0.415686, 0.27451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.831373, 0, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_grv84"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = false
+properties/0/sync = false
+properties/0/watch = true
+
+[node name="Win" type="MarginContainer"]
+modulate = Color(0.92549, 0.933333, 0.305882, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -120.0
+offset_right = 123.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_txedw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5fct")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_sxmsb")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 140)
+layout_mode = 2
+theme = ExtResource("2_q0a4d")
+theme_override_constants/separation = 19
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 46
+text = "You Win
+Enjoy your life!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="m_menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+
+[node name="exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "EXIT
+"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_grv84")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_p6arw")
+volume_db = 8.357
+bus = &"Niveles"
