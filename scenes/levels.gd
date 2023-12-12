@@ -23,9 +23,10 @@ func cargarNivel():
 	level_container.add_child(level, true)
 	level.level_ended.connect(level_en)
 	level.losed_level.connect(level_en2)
-func level_en2():
-	perder_menu.visible = true
 func level_en():
 	victory_menu.visible = true
+func level_en2():
+	perder_menu.visible = true
+
 
 

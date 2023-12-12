@@ -68,9 +68,10 @@ func _process(delta: float) -> void:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
 			if ganancias < meta_dia:
-				losed_level.emit()
-			else:
 				level_ended.emit()
+			
+			else:
+				losed_level.emit()
 				
 	# arreglo con los clientes en el nivel
 	var clientes_fila = get_tree().get_nodes_in_group("clientes")
