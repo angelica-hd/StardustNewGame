@@ -6,7 +6,7 @@ extends Node2D
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
 @onready var meta = $Meta/meta
-@export var meta_dia = 100
+@export var meta_dia = 50
 @onready var countdown = $countdown 
 var ganancias = 0
 @onready var mesa_ing = $mesaIng
@@ -38,6 +38,7 @@ func _on_timer_cliente_timeout():
 	pass
 	
 func _ready() -> void:
+	countdown.get_node("UI/Control").minutes = 2
 	Game.main = self
 	Game.players.sort_custom(func (a, b): return a.id < b.id)
 	for i in Game.players.size():

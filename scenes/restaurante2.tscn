@@ -29,8 +29,7 @@ size = Vector2(388.5, 95.25)
 script = ExtResource("1_kujks")
 mesero_scene = ExtResource("2_sg0u3")
 chef_scene = ExtResource("3_0s4x5")
-meta_dia = 200
-max_clientes_dia = 7
+max_clientes_dia = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -55,11 +54,11 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(65552, 458753, 15, 65553, 458753, 15)
 
 [node name="mesilla2" parent="." instance=ExtResource("5_m11mi")]
-position = Vector2(359, 389)
+position = Vector2(196, 268)
 scale = Vector2(0.5, 0.5)
 
 [node name="mesilla" parent="." instance=ExtResource("5_m11mi")]
-position = Vector2(194, 531)
+position = Vector2(379, 421)
 scale = Vector2(0.5, 0.5)
 
 [node name="Spawn" type="Node2D" parent="."]
