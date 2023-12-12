@@ -2,6 +2,7 @@ extends MarginContainer
 
 @onready var conn = $PanelContainer/MarginContainer/VBoxContainer/Conn
 @onready var exit = $PanelContainer/MarginContainer/VBoxContainer/exit
+@onready var credits = $PanelContainer/MarginContainer/VBoxContainer/credits
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +13,7 @@ func _ready():
 		return
 	conn.pressed.connect(_on_con)
 	exit.pressed.connect(_on_exit)
+	credits.pressed.connect(_on_credits_pressed)
 
 
 func _on_con():
@@ -19,4 +21,7 @@ func _on_con():
 	
 func _on_exit():
 	get_tree().quit()
+	
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 

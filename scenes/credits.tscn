@@ -1,0 +1,205 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqlees1aprs8h"]
+
+[ext_resource type="Script" path="res://scenes/credits.gd" id="1_j8fvi"]
+[ext_resource type="Theme" uid="uid://do15armsdpvk4" path="res://resources/humble.tres" id="1_qvkhv"]
+[ext_resource type="Texture2D" uid="uid://cer81o12ur84o" path="res://assets/tocomple.png" id="2_hnjv7"]
+[ext_resource type="Texture2D" uid="uid://dgh0c32k3a6ff" path="res://assets/star.png" id="3_341yp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytohn"]
+bg_color = Color(0.960784, 0.545098, 0.415686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhdmr"]
+bg_color = Color(0.941176, 0.415686, 0.27451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.831373, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntjxe"]
+content_margin_bottom = 3.0
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1172.0
+offset_bottom = 669.0
+script = ExtResource("1_j8fvi")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytohn")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhdmr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 140)
+layout_mode = 2
+theme = ExtResource("1_qvkhv")
+theme_override_constants/separation = 20
+
+[node name="Label8" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "- SPRITES AND TEXTURES -"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Client & Completos sprites - The Oma's House"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Player Characters - Petricake Games"
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Level Backgrounds - Petricake Games"
+
+[node name="Label7" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Furniture - LimeZu"
+
+[node name="Label12" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Food - PiiiXL"
+
+[node name="Label13" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Font - Eeve Somepx"
+
+[node name="Label11" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Bubble emotes - Kicked-in-Teeth"
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhdmr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3/MarginContainer"]
+custom_minimum_size = Vector2(300, 140)
+layout_mode = 2
+theme = ExtResource("1_qvkhv")
+theme_override_constants/separation = 20
+
+[node name="Label9" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "- MUSIC AND SFX -
+"
+
+[node name="Label3" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Main Menu - Heatley Bros
+"
+
+[node name="Label10" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Main Menu & Level 1 - Heatley Bros"
+
+[node name="Label4" type="Label" parent="PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Win & Lose SFX - POGW"
+
+[node name="PanelContainer4" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhdmr")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer4"]
+clip_contents = true
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer4/MarginContainer"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_qvkhv")
+theme_override_font_sizes/font_size = 46
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer5" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+localize_numeral_system = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ntjxe")
+
+[node name="back" type="Button" parent="PanelContainer5"]
+layout_mode = 2
+theme = ExtResource("1_qvkhv")
+theme_override_font_sizes/font_size = 28
+text = "MAIN MENU"
+
+[node name="PanelContainer2" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer2"]
+layout_mode = 0
+offset_left = 207.0
+offset_top = -93.0
+offset_right = 719.0
+offset_bottom = 419.0
+mouse_filter = 2
+texture = ExtResource("2_hnjv7")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2"]
+modulate = Color(1, 1, 0.203922, 1)
+layout_mode = 2
+offset_left = -566.0
+offset_top = -322.0
+offset_right = -411.0
+offset_bottom = -145.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("3_341yp")
+expand_mode = 1
