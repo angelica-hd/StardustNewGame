@@ -2,6 +2,7 @@ extends MarginContainer
 @onready var m_menu = $PanelContainer/MarginContainer/VBoxContainer/m_menu
 @onready var exit = $PanelContainer/MarginContainer/VBoxContainer/exit
 func _ready():
+	hide()
 	m_menu.pressed.connect(_on_menu)
 	exit.pressed.connect(_on_exit)
 	

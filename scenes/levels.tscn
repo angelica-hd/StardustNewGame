@@ -25,3 +25,13 @@ size_flags_horizontal = 1
 [node name="Perder-menu" parent="." instance=ExtResource("5_fudab")]
 offset_right = 1275.0
 offset_bottom = 780.0
+
+[node name="Win" parent="." instance=ExtResource("4_mio4e")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -123.0
+offset_right = 1275.0
+offset_bottom = 1339.0
+grow_horizontal = 1
+grow_vertical = 1

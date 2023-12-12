@@ -38,7 +38,7 @@ func _on_timer_cliente_timeout():
 	pass
 	
 func _ready() -> void:
-	countdown.get_node("UI/Control").minutes = 0
+	countdown.get_node("UI/Control").minutes = 2
 	Game.main = self
 	Game.players.sort_custom(func (a, b): return a.id < b.id)
 	for i in Game.players.size():
@@ -69,10 +69,10 @@ func _process(delta: float) -> void:
 #		ganancias = 50
 	if t.minutes == 0 and t.seconds == 0:
 			if ganancias < meta_dia:
-				level_ended.emit()
-			
-			else:
 				losed_level.emit()
+			else:
+				level_ended.emit()
+				
 	# arreglo con los clientes en el nivel
 	var clientes_fila = get_tree().get_nodes_in_group("clientes")
 	

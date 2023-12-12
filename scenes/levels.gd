@@ -4,6 +4,8 @@ extends Node2D
 @export var levels : Array[PackedScene] = []
 var current_level = -1 
 @onready var perder_menu = $"Perder-menu"
+@onready var win = $Win
+
 func _ready():
 	if is_multiplayer_authority():
 		cargarNivel()
@@ -22,6 +24,7 @@ func cargarNivel():
 	if current_level == 2:
 		var level = levels[current_level].instantiate()
 		level_container.add_child(level, true)
+		win.visible = true
 	else:
 		var level = levels[current_level].instantiate()
 		level_container.add_child(level, true)
