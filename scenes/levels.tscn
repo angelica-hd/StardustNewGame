@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/levels.gd" id="1_fjs48"]
 [ext_resource type="PackedScene" uid="uid://0a7vg3jon3pe" path="res://scenes/restaurante2.tscn" id="2_u8a4w"]
 [ext_resource type="PackedScene" uid="uid://c73h1at2t0bua" path="res://scenes/restaurante.tscn" id="3_kc0ng"]
-[ext_resource type="PackedScene" path="res://win.tscn" id="4_mio4e"]
+[ext_resource type="PackedScene" uid="uid://bhohe5ij2u038" path="res://win.tscn" id="4_mio4e"]
 [ext_resource type="PackedScene" uid="uid://cyvwsqndpvsp" path="res://scenes/Victoria-menu.tscn" id="4_uji18"]
 [ext_resource type="PackedScene" uid="uid://b67dywls7nrik" path="res://scenes/perder_menu.tscn" id="5_fudab"]
 
@@ -25,6 +25,7 @@ size_flags_horizontal = 1
 [node name="Perder-menu" parent="." instance=ExtResource("5_fudab")]
 offset_right = 1275.0
 offset_bottom = 780.0
+size_flags_horizontal = 1
 
 [node name="Win" parent="." instance=ExtResource("4_mio4e")]
 anchors_preset = 0

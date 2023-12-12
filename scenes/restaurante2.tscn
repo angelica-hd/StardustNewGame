@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0a7vg3jon3pe"]
+[gd_scene load_steps=18 format=3 uid="uid://0a7vg3jon3pe"]
 
 [ext_resource type="Script" path="res://scenes/restaurante2.gd" id="1_kujks"]
 [ext_resource type="PackedScene" uid="uid://dyir1uqbqim4o" path="res://scenes/mesero.tscn" id="2_sg0u3"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bknjuj28vueom" path="res://assets/music/8 Bit Space Groove.mp3" id="10_l6hj2"]
 [ext_resource type="PackedScene" uid="uid://8tn07n522e66" path="res://scenes/comandas.tscn" id="11_1jmyt"]
 [ext_resource type="PackedScene" uid="uid://btubo7fj5345l" path="res://scenes/basurero.tscn" id="12_2ab6o"]
+[ext_resource type="Texture2D" uid="uid://ck60yv0tmo5ac" path="res://assets/bubble_emotes_july_update.png" id="13_q6o02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kr5cm"]
 size = Vector2(1089.25, 17)
@@ -142,5 +143,132 @@ bus = &"Niveles"
 
 [node name="basurero" parent="." instance=ExtResource("12_2ab6o")]
 position = Vector2(575, 497)
+
+[node name="Tutorial" type="Node" parent="."]
+
+[node name="Movimiento" type="PanelContainer" parent="Tutorial"]
+offset_left = 279.0
+offset_top = 551.0
+offset_right = 912.0
+offset_bottom = 671.0
+theme = ExtResource("9_3ekk6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Movimiento"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Movimiento/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Tutorial/Movimiento/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.713726, 0.266667, 0.407843, 1)
+theme_override_font_sizes/font_size = 30
+text = "Para moverte haz CLICK IZQUIERDO hacia 
+donde quieres que se dirija tu personaje"
+horizontal_alignment = 1
+
+[node name="Clientes" type="PanelContainer" parent="Tutorial"]
+visible = false
+offset_left = 279.0
+offset_top = 551.0
+offset_right = 912.0
+offset_bottom = 671.0
+theme = ExtResource("9_3ekk6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Clientes"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Clientes/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Tutorial/Clientes/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.713726, 0.266667, 0.407843, 1)
+theme_override_font_sizes/font_size = 30
+text = "Al comenzar el día llegarán clientes al local,
+para atenderlos llevalos a una mesa con el
+ CLICK DERECHO"
+horizontal_alignment = 1
+
+[node name="Reglas" type="PanelContainer" parent="Tutorial"]
+visible = false
+offset_left = 279.0
+offset_top = 551.0
+offset_right = 949.0
+offset_bottom = 681.0
+theme = ExtResource("9_3ekk6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Reglas"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Reglas/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Tutorial/Reglas/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.713726, 0.266667, 0.407843, 1)
+theme_override_font_sizes/font_size = 30
+text = "Cada día tiene una duración límite y también
+una meta en ganancias que cumplir"
+horizontal_alignment = 1
+
+[node name="meta" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(30, 598)
+rotation = -3.14159
+scale = Vector2(5, 5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
+
+[node name="tiempo" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(31, 59)
+rotation = -3.14159
+scale = Vector2(5, -5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
+
+[node name="ingredientes" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(1157, 192)
+rotation = -2.25671
+scale = Vector2(5, 5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
+
+[node name="ingredientes2" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(1160, 332)
+rotation = -2.25671
+scale = Vector2(5, 5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
+
+[node name="ingredientes3" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(1160, 475)
+rotation = -2.25671
+scale = Vector2(5, 5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
+
+[node name="comanda" type="Sprite2D" parent="Tutorial"]
+visible = false
+position = Vector2(1066, 555)
+scale = Vector2(5, -5)
+texture = ExtResource("13_q6o02")
+region_enabled = true
+region_rect = Rect2(80, 80, 16, 16)
 
 [connection signal="timeout" from="TimerCliente" to="." method="_on_timer_cliente_timeout"]

@@ -148,7 +148,6 @@ func _on_player_entered(body):
 
 @rpc("call_local", "reliable", "any_peer")
 func send_comanda(comanda):
-	Debug.dprint(comanda)
 	var comandas = get_parent().get_node("comandas")
 	var index = comandas.lista_comandas.find(0,0)
 	index_pedido = index
